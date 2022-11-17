@@ -2,11 +2,13 @@
 
 import Foundation
 
-extension CreatePackage {
+extension PackageCreator {
   func openXcode() throws {
     do {
+      guard let dir = dir, let name = names[0] else { return }
+      
       try shell(
-        "cd \(dir.appending(component: names[0]).path()) &&" +
+        "cd \(dir.appending(component: name).path()) && " +
         "xed ."
       )
     } catch {

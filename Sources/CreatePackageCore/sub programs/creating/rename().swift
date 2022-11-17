@@ -2,19 +2,26 @@
 
 import Foundation
 
-extension CreatePackage {
+extension PackageCreator {
   func rename() throws {
     do {
+      guard
+        let dir = dir,
+        let kind = kind,
+        let name = names[0],
+        let implName = names[1]
+      else { return }
+
       let base = dir.appending(component: kind.template)
 
       // replacing the placeholders
       switch kind {
       case .library:
-        try findAndReplace(base, find: "<#Library#>", replace: names[0])
+        try findAndReplace(base, find: "<#Library#>", replace: name)
       case .service:
         for (placeholder, replacement) in [
-          "<#Service#>": names[0],
-          "<#Implementation#>": names[1]
+          "<#Service#>": name,
+          "<#Implementation#>": implName
         ] {
           try findAndReplace(base, find: placeholder, replace: replacement)
         }
@@ -23,9 +30,9 @@ extension CreatePackage {
       // removing the template git repo & the script itself
       try shell("cd \(base.path()) && rm -rf .git")
       try shell("cd \(base.path()) && rm create")
-      
+
       // renaming the package directory
-      try shell("cd \(dir.path()) && mv \(kind.template) \(names[0])")
+      try shell("cd \(dir.path()) && mv \(kind.template) \(name)")
     } catch {
       throw Failure.renaming(error)
     }
@@ -35,7 +42,7 @@ extension CreatePackage {
     // replacing all filename placeholders
     try shell(
       "cd \(dir.path()) && " +
-      "find . -name \"*\(match)*\" | " +
+        "find . -name \"*\(match)*\" | " +
         "sed -e 's/\\(.*\\)\\(\(match)\\)\\(.*\\)/mv \"\\1\\2\\3\" \"\\1\(replacement)\\3\"/g' |" +
         "zsh"
     )
@@ -43,8 +50,8 @@ extension CreatePackage {
     // replacing all in-file placeholders
     try shell(
       "cd \(dir.path()) && " +
-      "grep -rl '\(match)' . | " +
-      "LC_ALL=C xargs sed -i  '' 's/\(match)/\(replacement)/g'"
+        "grep -rl '\(match)' . | " +
+        "LC_ALL=C xargs sed -i  '' 's/\(match)/\(replacement)/g'"
     )
   }
 }

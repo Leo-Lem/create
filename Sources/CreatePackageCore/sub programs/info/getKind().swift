@@ -1,6 +1,6 @@
 //	Created by Leopold Lemmermann on 16.11.22.
 
-extension CreatePackage {
+extension PackageCreator {
   func promptForKind() -> Kind {
     while true {
       let input = readLine() ?? "l"

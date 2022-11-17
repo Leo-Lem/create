@@ -1,4 +1,4 @@
 import CreatePackageCore
 
-var script = CreatePackage()
+var script = PackageCreator()
 script.run()

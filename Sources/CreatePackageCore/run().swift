@@ -1,22 +1,8 @@
-//	Created by Leopold Lemmermann on 16.11.22.
+//	Created by Leopold Lemmermann on 17.11.22.
 
 import Foundation
 
-public struct CreatePackage {
-  var kind = Kind.library,
-      names = ["", ""],
-      dir = FileManager.default.homeDirectoryForCurrentUser
-
-  public init() {}
-
-  public mutating func run(_ arguments: [String] = CommandLine.arguments) {
-    do {
-      try runWithError(arguments)
-    } catch {
-      print(feedback: "Oops... Something went wrong: \(error)")
-    }
-  }
-
+extension PackageCreator {
   mutating func runWithError(_ arguments: [String]) throws {
     if arguments.contains("-l") || arguments.contains("--library") {
       kind = .library
@@ -25,7 +11,7 @@ public struct CreatePackage {
     } else {
       print(prompt: "What type of package do you want to create? ([l]ibrary|[s]ervice)")
       kind = promptForKind()
-      print(feedback: "You chose to create a \(kind).\n")
+      print(feedback: "You chose to create a \(kind!).\n")
     }
 
     let serviceSuffix = kind == .service ? " ('Service' will be appended automatically)" : ""
@@ -36,9 +22,9 @@ public struct CreatePackage {
     {
       names[0] = name
     } else {
-      print(prompt: "What is your \(kind) gonna be called?\(serviceSuffix)")
+      print(prompt: "What is your \(kind!) gonna be called?\(serviceSuffix)")
       names[0] = promptForName()
-      print(feedback: "Your \(kind) will be called '\(names[0])'.\n")
+      print(feedback: "Your \(kind!) will be called '\(names[0]!)'.\n")
     }
 
     if kind == .service {
@@ -49,9 +35,9 @@ public struct CreatePackage {
       {
         names[1] = name
       } else {
-        print(prompt: "What is your \(kind)'s implementation gonna be called?\(serviceSuffix)")
+        print(prompt: "What is your \(kind!)'s implementation gonna be called?\(serviceSuffix)")
         names[1] = promptForName()
-        print(feedback: "Your \(kind)'s implementation will be called '\(names[1])'.\n")
+        print(feedback: "Your \(kind!)'s implementation will be called '\(names[1]!)'.\n")
       }
     }
 
@@ -61,16 +47,16 @@ public struct CreatePackage {
     {
       dir = url
     } else {
-      print(prompt: "Where would you like to create the \(kind)? (leave blank for home)")
+      print(prompt: "Where would you like to create the \(kind!)? (leave blank for home)")
       dir = promptForDir()
-      print(feedback: "Your \(kind) will be created in '\(dir.path())'.")
+      print(feedback: "Your \(kind!) will be created in '\(dir!.path())'.")
     }
 
     print(feedback: "Starting creation...")
     try cloneRepo()
     try rename()
     try initGit()
-    print(feedback: "Your new \(kind) is ready at \(dir.appending(component: names[0]).path())")
+    print(feedback: "Your new \(kind!) is ready at \(dir!.appending(component: names[0]!).path())")
     
     try openXcode()
   }

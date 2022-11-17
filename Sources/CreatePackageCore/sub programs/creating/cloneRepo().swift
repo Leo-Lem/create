@@ -2,12 +2,14 @@
 
 import Foundation
 
-extension CreatePackage {
+extension PackageCreator {
   func cloneRepo() throws {
     do {
+      guard let dir = dir, let template = kind?.template else { return }
+      
       try shell(
-        "cd '\(dir.path())' &&" +
-        "git clone 'https://github.com/Leo-Lem/\(kind.template).git'")
+        "cd '\(dir.path())' && " +
+        "git clone 'https://github.com/Leo-Lem/\(template).git'")
     } catch {
       throw Failure.cloningTemplate(error)
     }

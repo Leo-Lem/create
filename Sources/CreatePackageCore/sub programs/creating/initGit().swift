@@ -2,11 +2,13 @@
 
 import Foundation
 
-extension CreatePackage {
+extension PackageCreator {
   func initGit() throws {
     do {
+      guard let dir = dir, let name = names[0] else { return }
+      
       try shell(
-        "cd \(dir.appendingPathComponent(names[0]).path()) && " +
+        "cd \(dir.appendingPathComponent(name).path()) && " +
         "git init && " +
         "git add . && " +
         "git commit -m 'Initial Commit.'"

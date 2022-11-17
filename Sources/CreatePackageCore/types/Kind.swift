@@ -1,13 +1,13 @@
 //	Created by Leopold Lemmermann on 16.11.22.
 
-extension CreatePackage {
+extension PackageCreator {
   enum Kind: String {
     case library,
          service
   }
 }
 
-extension CreatePackage.Kind {
+extension PackageCreator.Kind {
   var template: String {
     switch self {
     case .library:

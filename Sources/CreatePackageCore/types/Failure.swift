@@ -2,7 +2,7 @@
 
 import Foundation
 
-extension CreatePackage {
+extension PackageCreator {
   enum Failure: Error {
     case cloningTemplate(Error),
          renaming(Error),
@@ -11,7 +11,7 @@ extension CreatePackage {
   }
 }
 
-extension CreatePackage.Failure: LocalizedError {
+extension PackageCreator.Failure: LocalizedError {
   var errorDescription: String? {
     switch self {
     case let .cloningTemplate(error):

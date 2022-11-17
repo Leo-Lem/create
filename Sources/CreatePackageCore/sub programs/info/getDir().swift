@@ -2,7 +2,7 @@
 
 import Foundation
 
-extension CreatePackage {
+extension PackageCreator {
   func promptForDir() -> URL {
     while true {
       let input = readLine() ?? ""
@@ -17,34 +17,34 @@ extension CreatePackage {
   }
 
   func getDir(_ input: String) -> URL? {
-    if input.isEmpty {
-      var url: URL = dir
-      
-      if dir.lastPathComponent == "leolem" {
+    guard let kind = kind else { return nil }
+    
+    let fm = FileManager.default
+    var url: URL = fm.homeDirectoryForCurrentUser
+    
+    switch input.trimmingCharacters(in: .whitespacesAndNewlines) {
+    case let i where i.isEmpty:
+      if url.lastPathComponent == "leolem" {
         url = url
           .appending(component: "dev")
           .appending(component: "mob")
           .appending(component: "packages")
       }
-      
-      switch kind {
-      case .library: url.append(component: "libraries")
-      case .service: url.append(component: "services")
+    case let i where fm.fileExists(atPath: i):
+      if let inputURL = URL(string: i) {
+        url = inputURL
+      } else {
+        return nil
       }
-      
-      return url
-    } else if
-      FileManager.default.fileExists(atPath: input),
-      var url = URL(string: input)
-    {
-      switch kind {
-      case .library: url.append(component: "libraries")
-      case .service: url.append(component: "services")
-      }
-      
-      return url
-    } else {
+    default:
       return nil
     }
+    
+    switch kind {
+    case .library: url.append(component: "libraries")
+    case .service: url.append(component: "services")
+    }
+    
+    return url
   }
 }
