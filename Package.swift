@@ -23,6 +23,6 @@ let tests = Target.testTarget(
 
 let package = Package(
   name: executable.name,
-  platforms: [.macOS(.v13)],
+  platforms: [.macOS(.v10_13)],
   targets: [core, executable, tests]
 )
