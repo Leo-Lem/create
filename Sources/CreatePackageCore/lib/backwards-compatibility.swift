@@ -3,37 +3,29 @@
 import Foundation
 
 extension URL {
-  func appending(_ component: String) -> Self {
-    if #available(macOS 13.0, *) {
-      return appending(component: component)
-    } else {
-      return appendingPathComponent(component)
-    }
+  @_disfavoredOverload
+  @available(macOS, obsoleted: 13)
+  func appending(component: String) -> Self {
+    appendingPathComponent(component)
   }
-  
-  mutating func append(_ component: String) {
-    if #available(macOS 13.0, *) {
-      append(component: component)
-    } else {
-      appendPathComponent(component)
-    }
+
+  @_disfavoredOverload
+  @available(macOS, obsoleted: 13)
+  mutating func append(component: String) {
+    appendPathComponent(component)
   }
-  
+
+  @_disfavoredOverload
+  @available(macOS, obsoleted: 13)
   func path() -> String {
-    if #available(macOS 13.0, *) {
-      return path(percentEncoded: true)
-    } else {
-      return path
-    }
+    path
   }
 }
 
 extension String {
-  func replacing(match: String, with replacement: String) -> String {
-    if #available(macOS 13.0, *) {
-      return replacing(" ", with: "")
-    } else {
-      return replacingOccurrences(of: " ", with: "")
-    }
+  @_disfavoredOverload
+  @available(macOS, obsoleted: 13)
+  func replacing(_ match: String, with replacement: String) -> String {
+    replacingOccurrences(of: " ", with: "")
   }
 }

@@ -56,7 +56,7 @@ extension PackageCreator {
     try cloneRepo()
     try rename()
     try initGit()
-    print(feedback: "Your new \(kind!) is ready at \(dir!.appending(names[0]!).path())")
+    print(feedback: "Your new \(kind!) is ready at \(dir!.appending(component: names[0]!).path())")
     
     try openXcode()
   }

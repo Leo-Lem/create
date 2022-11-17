@@ -20,7 +20,7 @@ extension PackageCreator {
     // trimming trailing/leading newlings and removing spaces
     switch input
       .trimmingCharacters(in: .newlines)
-      .replacing(match: " ", with: "")
+      .replacing(" ", with: "")
     {
     // only allowing alphanumerics
     case let i where i.rangeOfCharacter(from: .alphanumerics.inverted) != nil:

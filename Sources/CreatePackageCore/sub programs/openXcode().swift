@@ -8,7 +8,7 @@ extension PackageCreator {
       guard let dir = dir, let name = names[0] else { return }
       
       try shell(
-        "cd \(dir.appending(name).path()) && " +
+        "cd \(dir.appending(component: name).path()) && " +
         "xed ."
       )
     } catch {

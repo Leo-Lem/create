@@ -12,7 +12,7 @@ extension PackageCreator {
         let implName = names[1]
       else { return }
 
-      let base = dir.appending(kind.template)
+      let base = dir.appending(component: kind.template)
 
       // replacing the placeholders
       switch kind {

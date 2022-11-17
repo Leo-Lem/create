@@ -26,9 +26,9 @@ extension PackageCreator {
     case let i where i.isEmpty:
       if url.lastPathComponent == "leolem" {
         url = url
-          .appending("dev")
-          .appending("mob")
-          .appending("packages")
+          .appending(component: "dev")
+          .appending(component: "mob")
+          .appending(component: "packages")
       }
     case let i where fm.fileExists(atPath: i):
       if let inputURL = URL(string: i) {
@@ -41,10 +41,10 @@ extension PackageCreator {
     }
     
     switch kind {
-    case .library: url.append("libraries")
-    case .service: url.append("services")
+    case .library:
+      return url.appending(component: "libraries")
+    case .service:
+      return url.appending(component: "services")
     }
-    
-    return url
   }
 }
