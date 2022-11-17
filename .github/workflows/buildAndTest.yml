@@ -21,9 +21,9 @@ jobs:
       - name: Build and test (Swift)
         run: swift test
 
-#  buildAndTest-macOS:
-#    runs-on: macos-12
-#    steps:
-#      - uses: actions/checkout@v3
-#      - name: Build and test ( macOS)
-#        run: xcodebuild test -scheme "$SCHEME" -destination "platform=macOS,arch=x86_64"
+  buildAndTest-macOS:
+    runs-on: macos-12
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and test ( macOS)
+        run: xcodebuild test -scheme "$SCHEME" -destination "platform=macOS,arch=x86_64"
