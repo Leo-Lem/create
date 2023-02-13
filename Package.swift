@@ -2,27 +2,32 @@
 
 import PackageDescription
 
+let package = Package(
+  name: "Create",
+  platforms: [.macOS(.v10_13)]
+)
+
+// MARK: - (DEPENDENCIES)
+
+package.dependencies
+  .append(.package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMajor(from: "1.0.0")))
+
 // MARK: - (TARGETS)
 
-let core = Target.target(
-  name: "CreatePackageCore"
+let script: Target = .executableTarget(
+  name: "CreateScript",
+  dependencies: [.product(name: "ArgumentParser", package: "swift-argument-parser")],
+  path: "Sources"
 )
 
-let executable = Target.executableTarget(
-  name: "CreatePackage",
-  dependencies: [.target(name: core.name)]
-)
-
-let tests = Target.testTarget(
-  name: "\(executable.name)Tests",
-  dependencies: [.target(name: core.name)],
+let tests: Target = .testTarget(
+  name: "\(script.name)Tests",
+  dependencies: [.target(name: script.name)],
   path: "Tests"
 )
 
-// MARK: - (PACKAGE)
+package.targets = [script, tests]
 
-let package = Package(
-  name: executable.name,
-  platforms: [.macOS(.v10_13)],
-  targets: [core, executable, tests]
-)
+// MARK: - (PRODUCTS)
+
+package.products.append(.executable(name: script.name, targets: [script.name]))

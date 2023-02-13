@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CreatePackage"
-               BuildableName = "CreatePackage"
-               BlueprintName = "CreatePackage"
+               BlueprintIdentifier = "CreateScript"
+               BuildableName = "CreateScript"
+               BlueprintName = "CreateScript"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,23 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CreatePackageTests"
-               BuildableName = "CreatePackageTests"
-               BlueprintName = "CreatePackageTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CreatePackageCore"
-               BuildableName = "CreatePackageCore"
-               BlueprintName = "CreatePackageCore"
+               BlueprintIdentifier = "CreateScriptTests"
+               BuildableName = "CreateScriptTests"
+               BlueprintName = "CreateScriptTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -60,9 +46,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CreatePackageTests"
-               BuildableName = "CreatePackageTests"
-               BlueprintName = "CreatePackageTests"
+               BlueprintIdentifier = "CreateScriptTests"
+               BuildableName = "CreateScriptTests"
+               BlueprintName = "CreateScriptTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -83,15 +69,27 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CreatePackage"
-            BuildableName = "CreatePackage"
-            BlueprintName = "CreatePackage"
+            BlueprintIdentifier = "CreateScript"
+            BuildableName = "CreateScript"
+            BlueprintName = "CreateScript"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = ""
+            argument = "library"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "service"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "app"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-h"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -106,9 +104,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CreatePackage"
-            BuildableName = "CreatePackage"
-            BlueprintName = "CreatePackage"
+            BlueprintIdentifier = "CreateScript"
+            BuildableName = "CreateScript"
+            BlueprintName = "CreateScript"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
