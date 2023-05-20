@@ -7,7 +7,7 @@ final class CreateTests: XCTestCase {
     let title = "TestPackage"
 
     let package = try XCTUnwrap(
-      try Create.parseAsRoot(["package", "-t", title, "-p", temp.path()]) as? Package
+      try Create.parseAsRoot(["package", "--no-open", "-t", title, "-p", temp.path()]) as? Package
     )
     
     XCTAssertEqual(package.title.title, "TestPackage")

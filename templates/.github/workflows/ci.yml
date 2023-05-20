@@ -1,4 +1,4 @@
-name: Swift
+name: CI
 
 on:
   push:
@@ -14,23 +14,32 @@ env:
   SCHEME: "<#TITLE#>"
 
 jobs:
-  buildAndTest-Swift:
-    runs-on: macos-12
+  Swift:
+    runs-on: macos-latest
     steps:
+      - uses: swift-actions/setup-swift@v1
+        with:
+          swift-version: "5"
       - uses: actions/checkout@v3
       - name: Build and test (Swift)
         run: swift test
 
-  buildAndTest-iOS:
-    runs-on: macos-12
+  iOS:
+    runs-on: macos-latest
     steps:
+      - uses: swift-actions/setup-swift@v1
+        with:
+          swift-version: "5"
       - uses: actions/checkout@v3
       - name: Build and test ( iOS)
         run: xcodebuild test -scheme "$SCHEME" -destination "platform=iOS Simulator,OS=16.0,name=iPhone SE (3rd generation)"
 
-  buildAndTest-macOS:
-    runs-on: macos-12
+  macOS:
+    runs-on: macos-latest
     steps:
+      - uses: swift-actions/setup-swift@v1
+        with:
+          swift-version: "5"
       - uses: actions/checkout@v3
       - name: Build and test ( macOS)
         run: xcodebuild test -scheme "$SCHEME" -destination "platform=macOS,arch=x86_64"

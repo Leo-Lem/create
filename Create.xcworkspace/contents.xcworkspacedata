@@ -11,9 +11,6 @@
       location = "group:.gitignore">
    </FileRef>
    <FileRef
-      location = "group:.github/workflows/buildAndTest.yml">
-   </FileRef>
-   <FileRef
       location = "group:create">
    </FileRef>
    <Group

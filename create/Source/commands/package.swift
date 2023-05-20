@@ -31,8 +31,12 @@ struct Package: ParsableCommand {
       print("Initializing git repository…")
       try Shell.setupRepo(at: project)
 
-      print("Opening project…")
-      try Shell.openProject(at: project)
+      if general.open {
+        print("Opening project…")
+        try Shell.openProject(at: project)
+      }
+
+      print("Done!")
     } catch {
       print("Oops... Something went wrong:\n\t\(error)")
     }
