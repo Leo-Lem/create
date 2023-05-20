@@ -1,4 +1,4 @@
-@testable import CreateScript
+@testable import Create
 import XCTest
 
 final class PackageCreatorTests: XCTestCase {

@@ -4,7 +4,7 @@ import Foundation
 
 extension Shell {
   @discardableResult
-  static func run(_ command: String) throws -> String? {
+  static func run(_ commands: String...) throws -> String? {
     let pipe = Pipe()
     let task = Process()
     
@@ -12,7 +12,7 @@ extension Shell {
     task.standardError = pipe
     task.standardInput = nil
     task.executableURL = URL(fileURLWithPath: "/bin/zsh")
-    task.arguments = ["-c", command]
+    task.arguments = ["-c", commands.joined(separator: "; ")]
     
     do { try task.run() } catch { throw Error.running(error) }
     

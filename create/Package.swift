@@ -10,17 +10,15 @@ let package = Package(
 // MARK: - (DEPENDENCIES)
 
 package.dependencies = [
-  .package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMajor(from: "1.0.0")),
-  .package(url: "https://github.com/pointfreeco/swift-dependencies.git", .upToNextMajor(from: "0.1.0"))
-  ]
+  .package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMajor(from: "1.0.0"))
+]
 
 // MARK: - (TARGETS)
 
 let script: Target = .executableTarget(
   name: package.name,
   dependencies: [
-    .product(name: "ArgumentParser", package: "swift-argument-parser"),
-    .product(name: "Dependencies", package: "swift-dependencies")
+    .product(name: "ArgumentParser", package: "swift-argument-parser")
   ],
   path: "Source"
 )
