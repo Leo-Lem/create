@@ -1,6 +1,0 @@
-*.xcodeproj/project.xcworkspace
-*.xcodeproj/xcuserdata
-
-# misc
-.DS_STORE
-Icon?

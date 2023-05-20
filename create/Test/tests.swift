@@ -1,7 +1,7 @@
 @testable import Create
 import XCTest
 
-final class PackageCreatorTests: XCTestCase {
+final class CreateTests: XCTestCase {
   var script: Create!
   
   override func setUp() { script = Create() }

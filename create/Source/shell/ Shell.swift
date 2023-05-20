@@ -2,7 +2,7 @@
 
 import Foundation
 
-extension Shell {
+enum Shell {
   @discardableResult
   static func run(_ commands: String...) throws -> String? {
     let pipe = Pipe()
@@ -25,10 +25,14 @@ extension Shell {
       throw Error.fileHandle(error)
     }
     
-    if task.terminationStatus == 0 {
-      return output
-    } else {
-      throw Error.failed(output)
-    }
+    return output
+  }
+}
+
+extension Shell {
+  enum Error: Swift.Error {
+    case running(Swift.Error)
+    case fileHandle(Swift.Error)
+    case failed(String?)
   }
 }
