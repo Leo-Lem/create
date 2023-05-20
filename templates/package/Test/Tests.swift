@@ -1,6 +1,8 @@
-@testable import <#Package#>
+// Created by <#NAME#> on <#DATE#>.
+
+@testable import <#TITLE#>
 import XCTest
 
-final class <#Package#>Tests: XCTestCase {
+final class <#TITLE#>Tests: XCTestCase {
   
 }

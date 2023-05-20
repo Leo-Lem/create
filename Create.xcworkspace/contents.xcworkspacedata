@@ -19,222 +19,15 @@
    <Group
       location = "group:templates"
       name = "templates">
-      <Group
-         location = "group:library"
-         name = "library">
-         <FileRef
-            location = "group:LICENSE">
-         </FileRef>
-         <Group
-            location = "group:Tests"
-            name = "Tests">
-            <FileRef
-               location = "group:Tests.swift">
-            </FileRef>
-         </Group>
-         <FileRef
-            location = "group:README.md">
-         </FileRef>
-         <FileRef
-            location = "group:Package.swift">
-         </FileRef>
-         <Group
-            location = "group:Sources"
-            name = "Sources">
-            <FileRef
-               location = "group:Sources.swift">
-            </FileRef>
-         </Group>
-      </Group>
-      <Group
-         location = "group:composable-app"
-         name = "composable-app">
-         <FileRef
-            location = "group:LICENSE">
-         </FileRef>
-         <Group
-            location = "group:config"
-            name = "config">
-            <FileRef
-               location = "group:config.swift">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:resources"
-            name = "resources">
-            <Group
-               location = "group:locale"
-               name = "locale">
-               <FileRef
-                  location = "group:Localizable.strings">
-               </FileRef>
-            </Group>
-            <Group
-               location = "group:lib"
-               name = "lib">
-            </Group>
-            <Group
-               location = "group:previews"
-               name = "previews">
-            </Group>
-            <Group
-               location = "group:assets"
-               name = "assets">
-               <Group
-                  location = "group:Assets.xcassets"
-                  name = "Assets.xcassets">
-                  <Group
-                     location = "group:AppIcon.appiconset"
-                     name = "AppIcon.appiconset">
-                     <FileRef
-                        location = "group:Contents.json">
-                     </FileRef>
-                  </Group>
-                  <Group
-                     location = "group:AccentColor.colorset"
-                     name = "AccentColor.colorset">
-                     <FileRef
-                        location = "group:Contents.json">
-                     </FileRef>
-                  </Group>
-                  <FileRef
-                     location = "group:Contents.json">
-                  </FileRef>
-               </Group>
-            </Group>
-         </Group>
-         <Group
-            location = "group:source"
-            name = "source">
-            <Group
-               location = "group:feature"
-               name = "feature">
-               <Group
-                  location = "group:models"
-                  name = "models">
-               </Group>
-               <Group
-                  location = "group:views"
-                  name = "views">
-                  <FileRef
-                     location = "group:FeatureView.swift">
-                  </FileRef>
-               </Group>
-               <Group
-                  location = "group:services"
-                  name = "services">
-               </Group>
-            </Group>
-            <FileRef
-               location = "group:MainView.swift">
-            </FileRef>
-            <FileRef
-               location = "group:Main.swift">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:tests"
-            name = "tests">
-            <Group
-               location = "group:ui"
-               name = "ui">
-               <FileRef
-                  location = "group:ui-tests.swift">
-               </FileRef>
-            </Group>
-            <Group
-               location = "group:unit"
-               name = "unit">
-               <FileRef
-                  location = "group:MainReducer-tests.swift">
-               </FileRef>
-            </Group>
-            <FileRef
-               location = "group:Full.xctestplan">
-            </FileRef>
-            <FileRef
-               location = "group:Unit.xctestplan">
-            </FileRef>
-         </Group>
-         <FileRef
-            location = "group:README.md">
-         </FileRef>
-         <FileRef
-            location = "group:&lt;#Project#&gt;.xcodeproj">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:service"
-         name = "service">
-         <FileRef
-            location = "group:LICENSE">
-         </FileRef>
-         <Group
-            location = "group:Tests"
-            name = "Tests">
-            <Group
-               location = "group:BaseTests"
-               name = "BaseTests">
-               <FileRef
-                  location = "group:tests.swift">
-               </FileRef>
-            </Group>
-            <Group
-               location = "group:Mock&lt;#Service#&gt;Tests"
-               name = "Mock&lt;#Service#&gt;Tests">
-               <FileRef
-                  location = "group:tests.swift">
-               </FileRef>
-            </Group>
-            <Group
-               location = "group:&lt;#Implementation#&gt;Tests"
-               name = "&lt;#Implementation#&gt;Tests">
-               <FileRef
-                  location = "group:tests.swift">
-               </FileRef>
-            </Group>
-         </Group>
-         <FileRef
-            location = "group:README.md">
-         </FileRef>
-         <FileRef
-            location = "group:Package.swift">
-         </FileRef>
-         <Group
-            location = "group:Sources"
-            name = "Sources">
-            <Group
-               location = "group:&lt;#Implementation#&gt;"
-               name = "&lt;#Implementation#&gt;">
-               <FileRef
-                  location = "group:service.swift">
-               </FileRef>
-            </Group>
-            <Group
-               location = "group:&lt;#Service#&gt;"
-               name = "&lt;#Service#&gt;">
-               <FileRef
-                  location = "group:service.swift">
-               </FileRef>
-               <FileRef
-                  location = "group:mock.swift">
-               </FileRef>
-            </Group>
-         </Group>
-      </Group>
+      <FileRef
+         location = "group:LICENSE">
+      </FileRef>
+      <FileRef
+         location = "group:README.md">
+      </FileRef>
       <Group
          location = "group:package"
          name = "package">
-         <FileRef
-            location = "group:LICENSE">
-         </FileRef>
-         <Group
-            location = "group:Test"
-            name = "Test">
-            <FileRef
-               location = "group:Tests.swift">
-            </FileRef>
-         </Group>
          <Group
             location = "group:Source"
             name = "Source">
@@ -242,9 +35,13 @@
                location = "group:File.swift">
             </FileRef>
          </Group>
-         <FileRef
-            location = "group:README.md">
-         </FileRef>
+         <Group
+            location = "group:Test"
+            name = "Test">
+            <FileRef
+               location = "group:Tests.swift">
+            </FileRef>
+         </Group>
          <FileRef
             location = "group:Package.swift">
          </FileRef>

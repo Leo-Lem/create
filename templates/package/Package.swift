@@ -1,16 +1,16 @@
-// swift-tools-version: 5.8
+// swift-tools-version: <#SWIFT_TOOLS_VERSION#>
 
 import PackageDescription
 
 let package = Package(
-  name: "<#Package#>",
-  platforms: [.iOS(.v13), .macOS(.v10_15)]
+  name: "<#TITLE#>",
+  platforms: [<#PLATFORMS#>]
 )
 
 // MARK: - (TARGETS)
 
 let source = Target.target(
-  name: "<#Package#>",
+  name: package.name,
   path: "Source"
 )
 
