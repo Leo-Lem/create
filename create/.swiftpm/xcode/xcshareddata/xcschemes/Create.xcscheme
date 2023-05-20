@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-h"
+            argument = "package -h"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
