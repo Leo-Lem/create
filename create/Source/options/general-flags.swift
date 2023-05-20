@@ -7,7 +7,3 @@ struct GeneralFlags: ParsableArguments {
   @Flag(name: .long, inversion: .prefixedNo, help: "Adds an MIT license.") var license = true
   @Flag(name: .long, inversion: .prefixedNo, help: "Initializes a git repository.") var repo = true
 }
-
-struct CIFlag: ParsableArguments {
-  @Flag(name: .long, inversion: .prefixedNo, help: "Adds Github Actions CI config.") var ci = true
-}

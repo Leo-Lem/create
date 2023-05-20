@@ -9,8 +9,8 @@ struct Package: ParsableCommand {
 
   @OptionGroup var title: TitleOption
   @OptionGroup var path: PathOption
+  @OptionGroup var options: Options
   @OptionGroup var general: GeneralFlags
-  @OptionGroup var ci: CIFlag
 
   func run() {
     do {
@@ -53,7 +53,7 @@ private extension Package {
   var folders: [String] {
     var files = [String]()
     
-    if ci.ci { files.append(".github") }
+    if options.setupCI { files.append(".github") }
     
     return files
   }
@@ -77,8 +77,8 @@ private extension Package {
   func rename(in stage: URL) throws {
     for (match, replacement) in [
       "<#TITLE#>": title.title,
-      "<#PLATFORMS#>": DEFAULT_PLATFORMS, // TODO: make configurable
-      "<#SWIFT_TOOLS_VERSION#>": DEFAULT_SWIFT_TOOLS_VERSION, // TODO: make configurable
+      "<#PLATFORMS#>": options.platforms.joined(separator: ", "),
+      "<#SWIFT_TOOLS_VERSION#>": options.swiftToolsVersion,
       "<#NAME#>": try Files.getName(),
       "<#DATE#>": Date.now.formatted(Date.FormatStyle().day(.twoDigits).month(.twoDigits).year(.defaultDigits)),
       "<#YEAR#>": Date.now.formatted(Date.FormatStyle().year(.defaultDigits))
