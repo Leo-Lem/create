@@ -1,3 +1,3 @@
 # Create
 
-A script to handle project creation.
+A utility to handle creation of new Xcode projects, packages and whatever else one needs…
