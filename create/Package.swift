@@ -10,8 +10,7 @@ let package = Package(
 // MARK: - (DEPENDENCIES)
 
 package.dependencies = [
-  .package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMajor(from: "1.0.0")),
-  .package(url: "https://github.com/realm/SwiftLint.git", .upToNextMajor(from: "0.1.0"))
+  .package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMajor(from: "1.0.0"))
 ]
 
 // MARK: - (TARGETS)
@@ -21,8 +20,7 @@ let script: Target = .executableTarget(
   dependencies: [
     .product(name: "ArgumentParser", package: "swift-argument-parser")
   ],
-  path: "Source",
-  plugins: [.plugin(name: "SwiftLintPlugin", package: "SwiftLint")]
+  path: "Source"
 )
 
 let tests: Target = .testTarget(
@@ -35,4 +33,4 @@ package.targets = [script, tests]
 
 // MARK: - (PRODUCTS)
 
-package.products.append(.executable(name: script.name, targets: [script.name]))
+package.products = [.executable(name: script.name, targets: [script.name])]

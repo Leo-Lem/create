@@ -7,6 +7,10 @@ let package = Package(
   platforms: [<#PLATFORMS#>]
 )
 
+// MARK: - (DEPENDENCIES)
+
+package.dependencies = []
+
 // MARK: - (TARGETS)
 
 let source = Target.target(
@@ -24,4 +28,4 @@ package.targets = [source, test]
 
 // MARK: - (PRODUCTS)
 
-package.products.append(.library(name: package.name, targets: [source.name]))
+package.products = [.library(name: package.name, targets: [source.name])]
