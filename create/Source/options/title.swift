@@ -5,4 +5,3 @@ import ArgumentParser
 struct TitleOption: ParsableArguments {
   @Option(name: .shortAndLong, help: "The title of your project.") var title: String
 }
-
