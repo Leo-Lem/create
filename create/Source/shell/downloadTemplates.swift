@@ -17,7 +17,7 @@ extension Shell {
       "git init",
       "git remote add origin \(REPOSITORY_URL)",
       "git sparse-checkout set --no-cone \(patterns.joined(separator: " "))",
-      "git pull origin new-version" // TODO: update to use main
+      "git pull origin main"
     )
     
     return temp.appending(component: "templates")
