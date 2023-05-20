@@ -67,7 +67,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-t test"
+            argument = "-t MyPackage"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

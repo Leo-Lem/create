@@ -1,12 +1,16 @@
+// Created by Leopold Lemmermann on 20.05.23.
+
 @testable import Create
 import Foundation
 import XCTest
 
 final class ShellTests: XCTestCase {
   func test_givenArgumentsAreValid_whenDownloadingTemplates_thenFilesAreDownloaded() throws {
-    let urls = try Shell.fetchTemplates(folders: "package", files: "README.md", "LICENSE")
+    let url = try Shell.fetchTemplates(folders: "package", files: "README.md", "LICENSE")
     
-    urls.forEach { XCTAssertTrue(FileManager.default.fileExists(atPath: $0.path())) }
+    XCTAssertTrue(FileManager.default.fileExists(atPath: url.appending(component: "package").path()))
+    XCTAssertTrue(FileManager.default.fileExists(atPath: url.appending(component: "README.md").path()))
+    XCTAssertTrue(FileManager.default.fileExists(atPath: url.appending(component: "LICENSE").path()))
   }
   
   func test_givenFolderExists_whenSettingUpRepo_thenCreatesGitFolderAndInitialCommit() throws {

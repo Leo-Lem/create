@@ -5,4 +5,6 @@ import XCTest
 
 final class <#TITLE#>Tests: XCTestCase {
   
+  // TODO: write some tests
+  
 }

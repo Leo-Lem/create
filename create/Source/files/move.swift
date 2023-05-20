@@ -8,10 +8,8 @@ extension Files {
     try manager.moveItem(at: origin, to: destination)
   }
   
-  static func moveAll(from origin: URL, to destination: URL) throws {
-    print(origin)
+  static func moveAll(in origin: URL, to destination: URL) throws {
     for url in try manager.contentsOfDirectory(at: origin, includingPropertiesForKeys: nil) {
-      print(url)
       try move(from: url, to: destination.appending(component: url.lastPathComponent))
     }
   }
