@@ -8,7 +8,7 @@ struct Package: ParsableCommand {
   static let configuration = CommandConfiguration(abstract: "Creates a new package.")
 
   @OptionGroup var title: TitleOption
-  @OptionGroup var directory: DirectoryOption
+  @OptionGroup var path: PathOption
   @OptionGroup var general: GeneralFlags
   @OptionGroup var ci: CIFlag
 
@@ -21,12 +21,18 @@ struct Package: ParsableCommand {
       
       print("Preparing your project…")
       let stage = try stageFiles(from: downloads)
-      
-      print("Renaming to '\(title.title)'…")
       try rename(in: stage)
       
+      let project = path.path.appending(component: title.title)
+      
+      print("Moving to \(project.path())…")
+      try move(from: stage, to: project)
+      
+      print("Initializing git repository…")
+      try Shell.setupRepo(at: project)
+      
       print("Opening project…")
-//      try Shell.openProject(at: <#T##URL#>)
+      try Shell.openProject(at: project)
     } catch {
       print("Oops... Something went wrong:\n\t\(error)")
     }
@@ -79,5 +85,10 @@ private extension Package {
     ] {
       try Shell.replace(match, in: stage, with: replacement)
     }
+  }
+  
+  func move(from stage: URL, to project: URL) throws {
+    try Files.create(at: project)
+    try Files.moveAll(in: stage, to: project)
   }
 }
