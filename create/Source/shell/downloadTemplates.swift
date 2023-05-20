@@ -4,8 +4,8 @@ import struct Foundation.URL
 import class Foundation.FileManager
 
 extension Shell {
-  static func fetchTemplates(folders: String..., files: String...) throws -> [URL] {
-    let temp = try getTempDir("leolem.create.downloads")
+  static func fetchTemplates(folders: String..., files: String...) throws -> URL {
+    let temp = try Files.getTempDir("leolem.create.downloads")
     let patterns = folders.map { "templates/\($0)" } + files.map  { "/templates/\($0)" }
     
     try run(
@@ -16,6 +16,6 @@ extension Shell {
       "git pull origin new-version"
     )
     
-    return patterns.map { temp.appending(path: $0) }
+    return temp.appending(component: "templates")
   }
 }

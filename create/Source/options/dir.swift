@@ -4,14 +4,13 @@ import ArgumentParser
 import Foundation
 
 struct DirectoryOption: ParsableArguments {
-  @Option(name: .shortAndLong, help: "Where to create your project (defaults to home).")
-  private var dir: String?
-
-  var url: URL {
-    if let dir, let url = URL(string: dir) {
-      return url
-    } else {
-      return FileManager.default.homeDirectoryForCurrentUser
+  @Option(
+    name: .shortAndLong,
+    help: "Where to create your project: (default: home)",
+    completion: .directory,
+    transform: { (dir: String?) in
+      dir.flatMap(URL.init) ?? FileManager.default.homeDirectoryForCurrentUser
     }
-  }
+  )
+  private var dir: URL!
 }

@@ -3,11 +3,11 @@
 import ArgumentParser
 
 struct GeneralFlags: ParsableArguments {
-  @Flag(name: .shortAndLong, help: "Adds a README file. (default: true)") var readme = true
-  @Flag(name: .shortAndLong, help: "Adds an MIT License. (default: true)") var license = true
-  @Flag(name: .shortAndLong, help: "Initializes a git repository. (default: true)") var repository = true
+  @Flag(name: .long, inversion: .prefixedNo, help: "Adds a README file.") var readme = true
+  @Flag(name: .long, inversion: .prefixedNo, help: "Adds an MIT license.") var license = true
+  @Flag(name: .long, inversion: .prefixedNo, help: "Initializes a git repository.") var repo = true
 }
 
 struct CIFlag: ParsableArguments {
-  @Flag(name: .shortAndLong, help: "Adds configuration for Github Actions CI. (default: true)") var ci = true
+  @Flag(name: .long, inversion: .prefixedNo, help: "Adds Github Actions CI config.") var ci = true
 }
