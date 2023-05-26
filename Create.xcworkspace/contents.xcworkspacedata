@@ -13,37 +13,9 @@
    <FileRef
       location = "group:create">
    </FileRef>
-   <Group
-      location = "group:templates"
-      name = "templates">
-      <FileRef
-         location = "group:LICENSE">
-      </FileRef>
-      <FileRef
-         location = "group:README.md">
-      </FileRef>
-      <Group
-         location = "group:package"
-         name = "package">
-         <Group
-            location = "group:Source"
-            name = "Source">
-            <FileRef
-               location = "group:File.swift">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:Test"
-            name = "Test">
-            <FileRef
-               location = "group:Tests.swift">
-            </FileRef>
-         </Group>
-         <FileRef
-            location = "group:Package.swift">
-         </FileRef>
-      </Group>
-   </Group>
+   <FileRef
+      location = "group:templates">
+   </FileRef>
    <Group
       location = "group:res"
       name = "res">

@@ -1,17 +1,13 @@
 ### <#TITLE#>
 
 
-# Xcode
-UserInterfaceState.xcuserstate
-
 # SwiftPM
 .build
-Packages
-xcuserdata/
-DerivedData/
+xcuserdata
+*.xcuserdatad
 .swiftpm/config/registries.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 
-# MacOS
+# macOS
 .DS_STORE
 Icon?

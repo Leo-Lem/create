@@ -4,13 +4,9 @@ import class Foundation.FileManager
 import struct Foundation.URL
 
 extension Shell {
-  static func fetchTemplates(folders: String..., files: String...) throws -> URL {
-    try fetchTemplates(folders: folders, files: files)
-  }
-
-  static func fetchTemplates(folders: [String], files: [String]) throws -> URL {
+  static func fetchTemplates(folders: [Template], files: [Template]) throws -> URL {
     let temp = try Files.getTempDir("leolem.create.downloads")
-    let patterns = folders.map { "templates/\($0)" } + files.map { "/templates/\($0)" }
+    let patterns = folders.map { "templates/\($0.rawValue)" } + files.map { "/templates/\($0.rawValue)" }
 
     try run(
       "cd \(temp.path())",
