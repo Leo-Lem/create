@@ -21,7 +21,7 @@
 		6EE394E52A205F1500CAAEAC /* <#TITLE#>-uitests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394A32A2058EE00CAAEAC /* <#TITLE#>-uitests.swift */; };
 		6EE394E82A205FC700CAAEAC /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394E72A205FC700CAAEAC /* config.swift */; };
 		6EE394EA2A20606B00CAAEAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EE394E92A20606B00CAAEAC /* LaunchScreen.storyboard */; };
-		6EE394EE2A2061ED00CAAEAC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EE394ED2A2061ED00CAAEAC /* Info.plist */; };
+		6EE394EE2A2061ED00CAAEAC /* <#TITLE#>-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EE394ED2A2061ED00CAAEAC /* <#TITLE#>-info.plist */; };
 		6EE394F02A20634600CAAEAC /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394EF2A20634600CAAEAC /* Colors.swift */; };
 		6EE394F22A20648800CAAEAC /* Name-preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394F12A20648800CAAEAC /* Name-preview.swift */; };
 		6EE394F32A20654F00CAAEAC /* <#TITLE#>-tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394A12A2058E900CAAEAC /* <#TITLE#>-tests.swift */; };
@@ -65,7 +65,7 @@
 		6EE394D92A205F0C00CAAEAC /* <#TITLE#>UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "<#TITLE#>UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EE394E72A205FC700CAAEAC /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		6EE394E92A20606B00CAAEAC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6EE394ED2A2061ED00CAAEAC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6EE394ED2A2061ED00CAAEAC /* <#TITLE#>-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "<#TITLE#>-info.plist"; sourceTree = "<group>"; };
 		6EE394EF2A20634600CAAEAC /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		6EE394F12A20648800CAAEAC /* Name-preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Name-preview.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,7 +182,7 @@
 			children = (
 				6EE394E72A205FC700CAAEAC /* config.swift */,
 				6EE394C62A205E6F00CAAEAC /* <#TITLE#>.entitlements */,
-				6EE394ED2A2061ED00CAAEAC /* Info.plist */,
+				6EE394ED2A2061ED00CAAEAC /* <#TITLE#>-info.plist */,
 				6EE394C22A205E0200CAAEAC /* .swiftlint.yml */,
 				6EE394C42A205E0700CAAEAC /* .gitignore */,
 			);
@@ -332,7 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EE394EE2A2061ED00CAAEAC /* Info.plist in Resources */,
+				6EE394EE2A2061ED00CAAEAC /* <#TITLE#>-info.plist in Resources */,
 				6EE394C32A205E0200CAAEAC /* .swiftlint.yml in Resources */,
 				6EE3949A2A2056FB00CAAEAC /* Assets.xcassets in Resources */,
 				6EE394B52A205ACC00CAAEAC /* Localizable.stringsdict in Resources */,
@@ -569,7 +569,7 @@
 				DEVELOPMENT_TEAM = "<#TEAM_ID#>";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = config/Info.plist;
+				INFOPLIST_FILE = "config/<#TITLE#>-info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "<#TITLE#>";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -604,7 +604,7 @@
 				DEVELOPMENT_TEAM = "<#TEAM_ID#>";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = config/Info.plist;
+				INFOPLIST_FILE = "config/<#TITLE#>-info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "<#TITLE#>";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -697,7 +697,7 @@
 				DEVELOPMENT_TEAM = "<#TEAM_ID#>";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = config/Info.plist;
+				INFOPLIST_FILE = "config/<#TITLE#>-info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "<#TITLE#>";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
