@@ -12,7 +12,7 @@
     "codeCoverage" : {
       "targets" : [
         {
-          "containerPath" : "container:<#TITLE#>.xcodeproj",
+          "containerPath" : "container:app/app.xcodeproj",
           "identifier" : "6E39CC112A20561800E99488",
           "name" : "<#TITLE#>"
         }
@@ -24,14 +24,14 @@
     {
       "parallelizable" : true,
       "target" : {
-        "containerPath" : "container:<#TITLE#>.xcodeproj",
+        "containerPath" : "container:app/app.xcodeproj",
         "identifier" : "6EE394CA2A205F0500CAAEAC",
         "name" : "<#TITLE#>Tests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:<#TITLE#>.xcodeproj",
+        "containerPath" : "container:app/app.xcodeproj",
         "identifier" : "6EE394D82A205F0C00CAAEAC",
         "name" : "<#TITLE#>UITests"
       }

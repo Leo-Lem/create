@@ -14,7 +14,7 @@
       location = "group:LICENSE">
    </FileRef>
    <FileRef
-      location = "group:app/<#TITLE#>.xcodeproj">
+      location = "group:app/app.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:res">

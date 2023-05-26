@@ -17,7 +17,7 @@
                BlueprintIdentifier = "6E39CC112A20561800E99488"
                BuildableName = "<#TITLE#>.app"
                BlueprintName = "<#TITLE#>"
-               ReferencedContainer = "container:app/<#TITLE#>.xcodeproj">
+               ReferencedContainer = "container:app/app.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,11 +29,11 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:test/Unit.xctestplan"
+            reference = "container:app/test/Unit.xctestplan"
             default = "YES">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:test/Full.xctestplan">
+            reference = "container:app/test/Full.xctestplan">
          </TestPlanReference>
       </TestPlans>
    </TestAction>
@@ -54,7 +54,7 @@
             BlueprintIdentifier = "6E39CC112A20561800E99488"
             BuildableName = "<#TITLE#>.app"
             BlueprintName = "<#TITLE#>"
-            ReferencedContainer = "container:app/<#TITLE#>.xcodeproj">
+            ReferencedContainer = "container:app/app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -70,7 +70,7 @@
             BlueprintIdentifier = "6E39CC112A20561800E99488"
             BuildableName = "<#TITLE#>.app"
             BlueprintName = "<#TITLE#>"
-            ReferencedContainer = "container:app/<#TITLE#>.xcodeproj">
+            ReferencedContainer = "container:app/app.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
