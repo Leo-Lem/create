@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1410"
-   version = "1.3">
+   LastUpgradeVersion = "1430"
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Create"
-               BuildableName = "Create"
-               BlueprintName = "Create"
-               ReferencedContainer = "container:">
+               BlueprintIdentifier = "6E39CC112A20561800E99488"
+               BuildableName = "&lt;#TITLE#&gt;.app"
+               BlueprintName = "&lt;#TITLE#&gt;"
+               ReferencedContainer = "container:&lt;#TITLE#&gt;.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,15 +27,36 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:test/Unit.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:test/Full.xctestplan">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CreateTests"
-               BuildableName = "CreateTests"
-               BlueprintName = "CreateTests"
-               ReferencedContainer = "container:">
+               BlueprintIdentifier = "6EE394CA2A205F0500CAAEAC"
+               BuildableName = "&lt;#TITLE#&gt;Tests.xctest"
+               BlueprintName = "&lt;#TITLE#&gt;Tests"
+               ReferencedContainer = "container:&lt;#TITLE#&gt;.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6EE394D82A205F0C00CAAEAC"
+               BuildableName = "&lt;#TITLE#&gt;UITests.xctest"
+               BlueprintName = "&lt;#TITLE#&gt;UITests"
+               ReferencedContainer = "container:&lt;#TITLE#&gt;.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -49,48 +70,17 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "NO"
-      viewDebuggingEnabled = "No">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Create"
-            BuildableName = "Create"
-            BlueprintName = "Create"
-            ReferencedContainer = "container:">
+            BlueprintIdentifier = "6E39CC112A20561800E99488"
+            BuildableName = "&lt;#TITLE#&gt;.app"
+            BlueprintName = "&lt;#TITLE#&gt;"
+            ReferencedContainer = "container:&lt;#TITLE#&gt;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "package"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-t MyPackage"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-p /users/leolem/dev/packages"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--swift-tools-version 5.6"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--platforms .iOS(.v15) .macOS(.v12)"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--no-open"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-h"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -102,10 +92,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Create"
-            BuildableName = "Create"
-            BlueprintName = "Create"
-            ReferencedContainer = "container:">
+            BlueprintIdentifier = "6E39CC112A20561800E99488"
+            BuildableName = "&lt;#TITLE#&gt;.app"
+            BlueprintName = "&lt;#TITLE#&gt;"
+            ReferencedContainer = "container:&lt;#TITLE#&gt;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
