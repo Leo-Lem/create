@@ -1,6 +1,6 @@
 // Created by Leopold Lemmermann on 21.05.23.
 
-@testable import Create
+@testable import create
 import Foundation
 import XCTest
 

@@ -7,16 +7,30 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Create"
-               BuildableName = "Create"
-               BlueprintName = "Create"
+               BlueprintIdentifier = "create"
+               BuildableName = "create"
+               BlueprintName = "create"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "createTests"
+               BuildableName = "createTests"
+               BlueprintName = "createTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,12 +43,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CreateTests"
-               BuildableName = "CreateTests"
-               BlueprintName = "CreateTests"
+               BlueprintIdentifier = "createTests"
+               BuildableName = "createTests"
+               BlueprintName = "createTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -55,9 +71,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Create"
-            BuildableName = "Create"
-            BlueprintName = "Create"
+            BlueprintIdentifier = "create"
+            BuildableName = "create"
+            BlueprintName = "create"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -88,19 +104,19 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-t MyApp"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-p /users/leolem/dev/apps"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-o leolem"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-i 4UUEFBYP76"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--no-open"
@@ -108,7 +124,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-h"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
@@ -118,16 +134,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Create"
-            BuildableName = "Create"
-            BlueprintName = "Create"
+            BlueprintIdentifier = "create"
+            BuildableName = "create"
+            BlueprintName = "create"
             ReferencedContainer = "container:">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

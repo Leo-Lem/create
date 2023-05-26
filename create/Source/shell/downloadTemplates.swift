@@ -11,7 +11,7 @@ extension Shell {
     try run(
       "cd \(temp.path())",
       "git init",
-      "git remote add origin https://github.com/Leo-Lem/Create.git",
+      "git remote add origin https://github.com/Leo-Lem/create.git",
       "git sparse-checkout set --no-cone \(patterns.joined(separator: " "))",
       "git pull origin main"
     )

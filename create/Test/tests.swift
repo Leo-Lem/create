@@ -1,4 +1,4 @@
-@testable import Create
+@testable import create
 import XCTest
 
 final class CreateTests: XCTestCase {
