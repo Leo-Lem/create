@@ -13,7 +13,7 @@ extension App {
 
     try Files.moveAll(in: downloads.appending(component: Template.app.rawValue), to: staging)
 
-    for file in files + folders {
+    for file in files {
       try Files.move(
         from: downloads.appending(component: file.rawValue),
         to: staging.appending(component: file.rawValue)
@@ -27,7 +27,7 @@ extension App {
       )
     }
 
-    try Files.copy(
+    try Files.move(
       from: staging.appending(component: Template.swiftlint.rawValue),
       to: staging.appending(component: Template.app.rawValue).appending(component: Template.swiftlint.rawValue)
     )

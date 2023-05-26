@@ -2,10 +2,19 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:app/<#TITLE#>.xcodeproj">
+      location = "group:.git">
    </FileRef>
    <FileRef
       location = "group:.gitignore">
+   </FileRef>
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:LICENSE">
+   </FileRef>
+   <FileRef
+      location = "group:app/<#TITLE#>.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:res">

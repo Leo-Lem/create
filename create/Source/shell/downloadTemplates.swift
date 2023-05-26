@@ -13,7 +13,7 @@ extension Shell {
       "git init",
       "git remote add origin https://github.com/Leo-Lem/Create.git",
       "git sparse-checkout set --no-cone \(patterns.joined(separator: " "))",
-      "git pull origin main"
+      "git pull origin app"
     )
 
     return temp.appending(component: "templates")

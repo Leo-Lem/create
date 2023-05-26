@@ -16,12 +16,9 @@
 		6EE394B22A205AC800CAAEAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6EE394B42A205AC800CAAEAC /* Localizable.strings */; };
 		6EE394B52A205ACC00CAAEAC /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 6EE394B72A205ACC00CAAEAC /* Localizable.stringsdict */; };
 		6EE394BB2A205C7400CAAEAC /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 6EE394BA2A205C7400CAAEAC /* ComposableArchitecture */; };
-		6EE394C32A205E0200CAAEAC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 6EE394C22A205E0200CAAEAC /* .swiftlint.yml */; };
-		6EE394C52A205E0700CAAEAC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6EE394C42A205E0700CAAEAC /* .gitignore */; };
 		6EE394E52A205F1500CAAEAC /* <#TITLE#>-uitests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394A32A2058EE00CAAEAC /* <#TITLE#>-uitests.swift */; };
 		6EE394E82A205FC700CAAEAC /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394E72A205FC700CAAEAC /* config.swift */; };
 		6EE394EA2A20606B00CAAEAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EE394E92A20606B00CAAEAC /* LaunchScreen.storyboard */; };
-		6EE394EE2A2061ED00CAAEAC /* <#TITLE#>-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EE394ED2A2061ED00CAAEAC /* <#TITLE#>-info.plist */; };
 		6EE394F02A20634600CAAEAC /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394EF2A20634600CAAEAC /* Colors.swift */; };
 		6EE394F22A20648800CAAEAC /* Name-preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394F12A20648800CAAEAC /* Name-preview.swift */; };
 		6EE394F32A20654F00CAAEAC /* <#TITLE#>-tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394A12A2058E900CAAEAC /* <#TITLE#>-tests.swift */; };
@@ -332,13 +329,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EE394EE2A2061ED00CAAEAC /* <#TITLE#>-info.plist in Resources */,
-				6EE394C32A205E0200CAAEAC /* .swiftlint.yml in Resources */,
 				6EE3949A2A2056FB00CAAEAC /* Assets.xcassets in Resources */,
 				6EE394B52A205ACC00CAAEAC /* Localizable.stringsdict in Resources */,
 				6EE394B22A205AC800CAAEAC /* Localizable.strings in Resources */,
 				6EE394EA2A20606B00CAAEAC /* LaunchScreen.storyboard in Resources */,
-				6EE394C52A205E0700CAAEAC /* .gitignore in Resources */,
 				6EE394AD2A205A8200CAAEAC /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
