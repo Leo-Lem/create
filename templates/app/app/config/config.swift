@@ -3,8 +3,8 @@
 import Foundation
 
 let ID = (
-  BUNDLE: "<#TEAM#>.<#TITLE#>",
-  GROUP: "group.<#TEAM#>.<#TITLE#>"
+  BUNDLE: "<#NAME#>.<#TITLE#>",
+  GROUP: "group.<#NAME#>.<#TITLE#>"
 )
 
 var CONTAINER_URL: URL { FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: ID.GROUP)! }

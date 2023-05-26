@@ -5,7 +5,7 @@ import ArgumentParser
 @main
 struct Create: ParsableCommand {
   static var configuration = CommandConfiguration(
-    abstract: "A utility for creating new Xcode projects, packages and whatever else…",
-    subcommands: [Package.self]
+    abstract: "An opinionated utility for creating new Xcode projects, packages and whatever else…",
+    subcommands: [Package.self, App.self]
   )
 }

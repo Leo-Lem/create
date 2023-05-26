@@ -4,4 +4,10 @@
    <FileRef
       location = "group:app/<#TITLE#>.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:.gitignore">
+   </FileRef>
+   <FileRef
+      location = "group:res">
+   </FileRef>
 </Workspace>
