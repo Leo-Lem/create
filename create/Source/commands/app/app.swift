@@ -10,27 +10,6 @@ struct App: CreateCommand {
   @OptionGroup var options: Options
   @OptionGroup var general: GeneralFlags
 
-  var folders: [Template] { [.app] }
-
-  var files: [Template] {
-    [
-      general.readme ? .readme : nil,
-      general.license ? .license : nil,
-      general.repo ? .gitignore : nil,
-      .swiftlint
-    ].compactMap { $0 }
-  }
-
-  var replacements: [Replacement] { [
-    .title(location.title),
-    .name(),
-    .date,
-    .year,
-    .organisation(options.organisation),
-    .teamId(options.teamID),
-    workspace
-  ] }
-
   func run() {
     create(project: location.project, repo: general.repo, open: general.open)
   }
@@ -44,7 +23,7 @@ extension App {
     @Option(name: [.long, .customShort("i")], help: "Your team ID. (default: select manually in Xcode)")
     var teamID: String?
 
-    @Flag(name: [.long, .customShort("l")], help: "Use SwiftLint.")
+    @Flag(name: [.long, .customShort("l")], inversion: .prefixedEnableDisable, help: "Use SwiftLint.")
     var swiftlint = true
   }
 }

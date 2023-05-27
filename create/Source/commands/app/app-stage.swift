@@ -3,6 +3,17 @@
 import struct Foundation.URL
 
 extension App {
+  var folders: [Template] { [.app, .workspace] }
+
+  var files: [Template] {
+    [
+      general.readme ? .readme : nil,
+      general.license ? .license : nil,
+      general.repo ? .gitignore : nil,
+      .swiftlint
+    ].compactMap { $0 }
+  }
+
   func stage(from downloads: URL, to stage: URL) throws {
     try Template.app.move(from: downloads, to: stage)
     try Template.workspace.move(from: downloads, to: stage, rename: "<#TITLE#>.xcworkspace")

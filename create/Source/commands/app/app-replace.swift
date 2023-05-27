@@ -3,27 +3,34 @@
 import Foundation
 
 extension App {
+  var replacements: [Replacement] { [
+    .title(location.title),
+    .name(),
+    .date,
+    .year,
+    .organisation(options.organisation),
+    .teamId(options.teamID),
+    workspace
+  ] }
+
   var workspace: Replacement {
-    var files = ""
+    var files = [String]()
 
     if general.repo {
-      files.append(fileRef(for: ".git"))
-      files.append(fileRef(for: Template.gitignore.rawValue))
+      files.append(".git")
+      files.append(Template.gitignore.rawValue)
     }
 
-    if general.readme { files.append(fileRef(for: Template.readme.rawValue)) }
+    if general.readme { files.append(Template.readme.rawValue) }
 
-    if general.license { files.append(fileRef(for: Template.license.rawValue)) }
+    if general.license { files.append(Template.license.rawValue) }
 
-    files.append(fileRef(for: "app/app.xcodeproj"))
-    files.append(fileRef(for: "res"))
+    files.append("app/app.xcodeproj")
+    files.append("res")
 
-    return .other(match: "<#WORKSPACE_FILES#>", replacement: files)
-  }
-}
-
-private extension App {
-  func fileRef(for name: String) -> String {
-    return  "<FileRef location = \"group:\(name)\"></FileRef>\n"
+    return .other(
+      match: "<#WORKSPACE_FILES#>",
+      replacement: files.map { "<FileRef location = \"group:\($0)\"></FileRef>"}.joined(separator: "\n")
+    )
   }
 }

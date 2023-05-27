@@ -20,8 +20,7 @@ extension Shell {
   static func replaceInFiles(_ match: String, in dir: URL, with replacement: String) throws {
     try run(
       "cd \(dir.path())",
-      "grep -rl '\(match)' . | "
-        + "LC_ALL=C xargs sed -i  '' 's/\(match)/\(replacement)/g'"
+      "find . -type f -exec sed -i '' 's/\(match)/\(replacement)/g' {} +"
     )
   }
 }

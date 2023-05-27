@@ -1,8 +1,8 @@
 // Created by Leopold Lemmermann on 27.05.23.
 
-import struct Foundation.URL
 import func Foundation.fflush
 import var Foundation.stdout
+import struct Foundation.URL
 
 extension CreateCommand {
   func create(project: URL, repo: Bool, open: Bool) {
@@ -40,18 +40,9 @@ extension CreateCommand {
 }
 
 private extension CreateCommand {
-  func fetchTemplates() throws -> URL {
-    try Shell.fetchTemplates(folders: folders, files: files)
-  }
-
-  func createStage() throws -> URL {
-    try Files.getTempDir("leolem.create.staging")
-  }
-
-  func replace(in stage: URL) throws {
-    try replacements.forEach { try $0.replace(in: stage) }
-  }
-
+  func fetchTemplates() throws -> URL { try Shell.fetchTemplates(folders: folders, files: files) }
+  func createStage() throws -> URL { try Files.getTempDir("leolem.create.staging") }
+  func replace(in stage: URL) throws { try replacements.forEach { try $0.replace(in: stage) } }
   func unstage(from stage: URL, to project: URL) throws {
     try Files.create(at: project)
     try Files.moveAll(in: stage, to: project)
