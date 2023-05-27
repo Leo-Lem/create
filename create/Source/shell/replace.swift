@@ -18,9 +18,13 @@ extension Shell {
   }
 
   static func replaceInFiles(_ match: String, in dir: URL, with replacement: String) throws {
+    let sanitized = replacement
+      .replacing("\n", with: "\\\n")
+      .replacing("/", with: "\\/")
+
     try run(
       "cd \(dir.path())",
-      "find . -type f -exec sed -i '' 's/\(match)/\(replacement)/g' {} +"
+      "find . -type f -exec sed -i '' 's/\(match)/\(sanitized)/g' {} +"
     )
   }
 }
