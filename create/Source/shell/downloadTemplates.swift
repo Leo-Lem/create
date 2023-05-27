@@ -1,7 +1,6 @@
 // Created by Leopold Lemmermann on 20.05.23.
 
-import class Foundation.FileManager
-import struct Foundation.URL
+import Foundation
 
 extension Shell {
   static func fetchTemplates(folders: [Template], files: [Template]) throws -> URL {
@@ -13,9 +12,15 @@ extension Shell {
       "git init",
       "git remote add origin https://github.com/Leo-Lem/create.git",
       "git sparse-checkout set --no-cone \(patterns.joined(separator: " "))",
-      "git pull origin main"
+      "git pull origin \(templateBranch)"
     )
 
     return temp.appending(component: "templates")
   }
+
+  #if DEBUG
+    static let templateBranch = ProcessInfo.processInfo.environment["TEMPLATE_BRANCH"]!
+  #else
+    static let templateBranch = "main"
+  #endif
 }

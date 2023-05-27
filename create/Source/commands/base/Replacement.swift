@@ -12,9 +12,8 @@ enum Replacement {
   case swiftToolsVersion(String)
   case organisation(String)
   case teamId(String? = nil)
-}
+  case other(match: String, replacement: String)
 
-extension Replacement {
   var match: String {
     switch self {
     case .title: return "<#TITLE#>"
@@ -25,6 +24,7 @@ extension Replacement {
     case .swiftToolsVersion: return "<#SWIFT_TOOLS_VERSION#>"
     case .organisation: return "<#ORGANISATION#>"
     case .teamId: return "<#TEAM_ID#>"
+    case let .other(match, _): return match
     }
   }
 
@@ -39,10 +39,13 @@ extension Replacement {
       case let .swiftToolsVersion(version): return version
       case let .organisation(organisation): return organisation
       case let .teamId(id): return id ?? "YOUR_TEAM_ID_HERE"
+      case let .other(_, replacement): return replacement
       }
     }
   }
+}
 
+extension Replacement {
   func replace(in stage: URL) throws {
     try Shell.replace(match, in: stage, with: replacement)
   }
