@@ -29,7 +29,9 @@ struct Package: CreateCommand {
     .title(location.title),
     .name(),
     .date,
-    .year
+    .year,
+    .swiftToolsVersion(options.swiftToolsVersion),
+    .platforms(options.platforms)
   ] }
 
   func stage(from downloads: URL, to stage: URL) throws {
@@ -42,17 +44,5 @@ struct Package: CreateCommand {
 
   func run() {
     create(project: location.project, repo: general.repo, open: general.open)
-  }
-}
-
-extension Package {
-  struct Options: ParsableArguments {
-    @Flag(name: .long, inversion: .prefixedNo, help: "Adds Github Actions CI config.") var ci = true
-    @Option(name: .long, help: "The Swift tools version.") var swiftToolsVersion = "5.8"
-    @Option(
-      name: .long,
-      parsing: .upToNextOption,
-      help: "The supported platforms."
-    ) var platforms = [".iOS(.v13)", ".macOS(.v10_15)"]
   }
 }
