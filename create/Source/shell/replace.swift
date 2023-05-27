@@ -11,9 +11,7 @@ extension Shell {
   static func replaceNames(_ match: String, in dir: URL, with replacement: String) throws {
     try run(
       "cd \(dir.path())",
-      "find . -name \"*\(match)*\" | "
-        + "sed -e 's/\\(.*\\)\\(\(match)\\)\\(.*\\)/mv \"\\1\\2\\3\" \"\\1\(replacement)\\3\"/g' |"
-        + "zsh"
+      "find . -depth -execdir bash -c 'mv \"$0\" \"${0/\(match)/\(replacement)}\"' {} \\;"
     )
   }
 
