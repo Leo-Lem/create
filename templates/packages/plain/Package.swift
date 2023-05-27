@@ -13,19 +13,19 @@ package.dependencies = []
 
 // MARK: - (TARGETS)
 
-let source = Target.target(
+let src = Target.target(
   name: package.name,
-  path: "Source"
+  path: "src"
 )
 
 let test = Target.testTarget(
-  name: "\(source.name)Tests",
-  dependencies: [.target(name: source.name)],
-  path: "Test"
+  name: "\(src.name)Tests",
+  dependencies: [.target(name: src.name)],
+  path: "test"
 )
 
-package.targets = [source, test]
+package.targets = [src, test]
 
 // MARK: - (PRODUCTS)
 
-package.products = [.library(name: package.name, targets: [source.name])]
+package.products = [.library(name: package.name, targets: [src.name])]

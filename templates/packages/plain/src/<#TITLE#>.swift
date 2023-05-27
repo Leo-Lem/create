@@ -1,3 +1,3 @@
 // Created by <#NAME#> on <#DATE#>.
 
-// TODO: get started on '<#TITLE#>'
+// TODO: implement <#TITLE#>

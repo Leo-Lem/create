@@ -2,7 +2,7 @@
 
 import SwiftUI
 
-struct HelloView: View {
+struct HelloLabel: View {
   let name: String
 
   var body: some View {
@@ -20,9 +20,9 @@ struct HelloView: View {
 // MARK: - (PREVIEWS)
 
 #if DEBUG
-  struct HelloWorldView_Previews: PreviewProvider {
+  struct HelloLabel_Previews: PreviewProvider {
     static var previews: some View {
-      HelloView(name: name)
+      HelloLabel(name: name)
     }
   }
 #endif
