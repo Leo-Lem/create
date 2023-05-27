@@ -3,7 +3,7 @@
 import struct Foundation.URL
 
 extension App {
-  var folders: [Template] { [.app, .workspace] }
+  var folders: [Template] { [.app, .workspace, .res] }
 
   var files: [Template] {
     [
@@ -17,6 +17,7 @@ extension App {
   func stage(from downloads: URL, to stage: URL) throws {
     try Template.app.move(from: downloads, to: stage)
     try Template.workspace.move(from: downloads, to: stage, rename: "<#TITLE#>.xcworkspace")
+    try Template.res.move(from: downloads, to: stage)
 
     if general.readme { try Template.readme.move(from: downloads, to: stage) }
     if general.license { try Template.license.move(from: downloads, to: stage) }
