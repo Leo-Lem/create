@@ -2,41 +2,14 @@
 
 import ArgumentParser
 
-struct App: ParsableCommand {
-  static let configuration = CommandConfiguration(abstract: "Creates a new app.")
-
-  @OptionGroup var title: TitleOption
-  @OptionGroup var path: PathOption
+struct App: CreateCommand {
+  static let category = "app", configuration = CommandConfiguration(abstract: "Creates a new app.")
+  
+  @OptionGroup var location: LocationOption
   @OptionGroup var options: Options
   @OptionGroup var general: GeneralFlags
-
+  
   func run() {
-    do {
-      print("Starting app creation…")
-
-      print("Fetching templates…")
-      let downloads = try fetchTemplates()
-
-      print("Preparing your project…")
-      let stage = try stageFiles(from: downloads)
-      try rename(in: stage)
-
-      let project = path.path.appending(component: title.title)
-
-      print("Moving to \(project.path())…")
-      try move(from: stage, to: project)
-
-      print("Initializing git repository…")
-      try Shell.setupRepo(at: project)
-
-      if general.open {
-        print("Opening project…")
-        try Shell.openProject(at: project)
-      }
-
-      print("Done!")
-    } catch {
-      print("Oops... Something went wrong:\n\t\(error)")
-    }
+    create(project: location.project, repo: general.repo, open: general.open)
   }
 }

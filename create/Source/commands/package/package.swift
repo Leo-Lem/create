@@ -1,42 +1,48 @@
 // Created by Leopold Lemmermann on 20.05.23.
 
 import ArgumentParser
+import struct Foundation.URL
 
-struct Package: ParsableCommand {
-  static let configuration = CommandConfiguration(abstract: "Creates a new package.")
+struct Package: CreateCommand {
+  static let category = "package", configuration = CommandConfiguration(abstract: "Creates a new package.")
 
-  @OptionGroup var title: TitleOption
-  @OptionGroup var path: PathOption
+  @OptionGroup var location: LocationOption
   @OptionGroup var options: Options
   @OptionGroup var general: GeneralFlags
 
-  func run() {
-    do {
-      print("Starting package creation…")
+  var folders: [Template] {
+    [
+      .package,
+      options.ci ? .githubCI : nil
+    ].compactMap { $0 }
+  }
 
-      print("Fetching templates…")
-      let downloads = try fetchTemplates()
+  var files: [Template] {
+    [
+      general.readme ? .readme : nil,
+      general.license ? .license : nil,
+      general.repo ? .gitignore : nil
+    ].compactMap { $0 }
+  }
 
-      print("Preparing your project…")
-      let stage = try stageFiles(from: downloads)
-      try rename(in: stage)
+  var replacements: [Replacement] { [
+    .title(location.title),
+    .name(),
+    .date,
+    .year,
+    .swiftToolsVersion(options.swiftToolsVersion),
+    .platforms(options.platforms)
+  ] }
 
-      let project = path.path.appending(component: title.title)
+  func stage(from downloads: URL, to stage: URL) throws {
+    try Files.moveAll(in: downloads.appending(component: Template.package.rawValue), to: stage)
 
-      print("Moving to \(project.path())…")
-      try move(from: stage, to: project)
-
-      print("Initializing git repository…")
-      try Shell.setupRepo(at: project)
-
-      if general.open {
-        print("Opening project…")
-        try Shell.openProject(at: project)
-      }
-
-      print("Done!")
-    } catch {
-      print("Oops... Something went wrong:\n\t\(error)")
+    for f in files + folders.filter({ $0 != .package }) {
+      try Files.move(from: downloads.appending(component: f.rawValue), to: stage.appending(component: f.rawValue))
     }
+  }
+
+  func run() {
+    create(project: location.project, repo: general.repo, open: general.open)
   }
 }

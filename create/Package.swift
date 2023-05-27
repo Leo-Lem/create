@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "Create",
+  name: "create",
   platforms: [.macOS(.v13)]
 )
 

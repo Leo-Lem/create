@@ -1,10 +1,10 @@
-// Created by Leopold Lemmermann on 20.05.23.
+// Created by Leopold Lemmermann on 27.05.23.
 
 import ArgumentParser
 
 extension Package {
   struct Options: ParsableArguments {
-    @Flag(name: .long, inversion: .prefixedNo, help: "Adds Github Actions CI config.") var setupCI = true
+    @Flag(name: .long, inversion: .prefixedNo, help: "Adds Github Actions CI config.") var ci = true
     @Option(name: .long, help: "The Swift tools version.") var swiftToolsVersion = "5.8"
     @Option(
       name: .long,

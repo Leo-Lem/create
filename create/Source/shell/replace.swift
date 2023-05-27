@@ -9,19 +9,32 @@ extension Shell {
   }
 
   static func replaceNames(_ match: String, in dir: URL, with replacement: String) throws {
+    let sanitized = replacement
+      .replacing("\\", with: "\\\\")
+      .replacing("\n", with: "\\\n")
+      .replacing("/", with: "\\/")
+      .replacing("'", with: "\\'")
+      .replacing("{", with: "\\{")
+      .replacing("}", with: "\\}")
+
     try run(
       "cd \(dir.path())",
-      "find . -name \"*\(match)*\" | "
-        + "sed -e 's/\\(.*\\)\\(\(match)\\)\\(.*\\)/mv \"\\1\\2\\3\" \"\\1\(replacement)\\3\"/g' |"
-        + "zsh"
+      "find . -depth -execdir bash -c 'mv \"$0\" \"${0/\(match)/\(sanitized)}\"' {} \\;"
     )
   }
 
   static func replaceInFiles(_ match: String, in dir: URL, with replacement: String) throws {
+    let sanitized = replacement
+      .replacing("\\", with: "\\\\")
+      .replacing("\n", with: "\\\n")
+      .replacing("/", with: "\\/")
+      .replacing("'", with: "\\'")
+      .replacing("{", with: "\\{")
+      .replacing("}", with: "\\}")
+
     try run(
       "cd \(dir.path())",
-      "grep -rl '\(match)' . | "
-        + "LC_ALL=C xargs sed -i  '' 's/\(match)/\(replacement)/g'"
+      "find . -type f -exec sed -i '' 's/\(match)/\(sanitized)/g' {} +"
     )
   }
 }
