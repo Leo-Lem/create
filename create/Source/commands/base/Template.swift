@@ -11,7 +11,8 @@ enum Template: String {
   case gitignore = ".gitignore"
   case swiftlint = ".swiftlint.yml"
   case githubCI = ".github"
-  case workspace = ".xcworkspace"
+  case xcworkspace = ".xcworkspace"
+  case xcproject = ".xcodeproj"
 }
 
 extension Template {

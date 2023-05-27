@@ -9,16 +9,28 @@ extension Shell {
   }
 
   static func replaceNames(_ match: String, in dir: URL, with replacement: String) throws {
+    let sanitized = replacement
+      .replacing("\\", with: "\\\\")
+      .replacing("\n", with: "\\\n")
+      .replacing("/", with: "\\/")
+      .replacing("'", with: "\\'")
+      .replacing("{", with: "\\{")
+      .replacing("}", with: "\\}")
+
     try run(
       "cd \(dir.path())",
-      "find . -depth -execdir bash -c 'mv \"$0\" \"${0/\(match)/\(replacement)}\"' {} \\;"
+      "find . -depth -execdir bash -c 'mv \"$0\" \"${0/\(match)/\(sanitized)}\"' {} \\;"
     )
   }
 
   static func replaceInFiles(_ match: String, in dir: URL, with replacement: String) throws {
     let sanitized = replacement
+      .replacing("\\", with: "\\\\")
       .replacing("\n", with: "\\\n")
       .replacing("/", with: "\\/")
+      .replacing("'", with: "\\'")
+      .replacing("{", with: "\\{")
+      .replacing("}", with: "\\}")
 
     try run(
       "cd \(dir.path())",
