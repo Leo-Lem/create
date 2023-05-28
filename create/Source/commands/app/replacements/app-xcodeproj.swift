@@ -2,8 +2,8 @@
 
 import struct Foundation.UUID
 
-extension Replacement {
-  static func xcodeprojTCA(_ general: CreateCommandOptions, swiftlint: Bool) -> Replacement {
+extension Array where Element == Replacement {
+  static func xcodeprojTCA(_ general: CreateCommandOptions, swiftlint: Bool) -> Self {
     var children = [XcodeprojChild]()
     var configChildIds = [String]()
 
@@ -52,10 +52,7 @@ extension Replacement {
         )
       }
 
-    return .replacements(
-      replacements
-        + [.replacement("<#CONFIG_CHILD_IDS#>", configChildIds.joined(separator: ",\n"))]
-    )
+    return replacements + [.replacement("<#CONFIG_CHILD_IDS#>", configChildIds.joined(separator: ",\n"))]
   }
 }
 

@@ -45,12 +45,12 @@ struct App: CreateCommand {
     replacements.append(.organisation(organisation))
     replacements.append(.teamId(teamID))
     replacements.append(.xcworkspace(general))
-    replacements.append(.xcscheme(template))
+    replacements += .xcscheme(template)
 
     switch template {
     case .default: break
     case .simple: break
-    case .tca: replacements.append(.xcodeprojTCA(general, swiftlint: swiftlint))
+    case .tca: replacements += .xcodeprojTCA(general, swiftlint: swiftlint)
     }
   }
 }
