@@ -6,12 +6,12 @@ import struct Foundation.URL
 enum Replacement {
   case title(String)
   case name(String? = nil)
+  case organisation(String)
+  case teamId(String? = nil)
   case date
   case year
   case platforms([String])
   case swiftToolsVersion(String)
-  case organisation(String)
-  case teamId(String? = nil)
   case other(match: String, replacement: String)
 
   var match: String {

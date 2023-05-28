@@ -89,15 +89,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--swift-tools-version 5.6"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--platforms .iOS(.v15) .macOS(.v12)"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-t MyPackage"
+            argument = "MyPackage"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -105,15 +97,19 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--no-ci"
+            argument = "--tca-feature"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--no-ci"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "app"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-t MyApp"
+            argument = "MyApp"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -129,19 +125,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--no-open"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "--no-repo"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--no-swiftlint"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--no-tca"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -152,7 +136,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "TEMPLATE_BRANCH"
-            value = "main"
+            value = "new-packages"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

@@ -5,7 +5,7 @@ import ComposableArchitecture
 public struct <#TITLE#>: ReducerProtocol {
   public func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
     switch action {
-      // TODO: add <#TITLE#>'s reducer
+      // TODO: add reducer for <#TITLE#>
     default: break
     }
 
@@ -17,7 +17,7 @@ public struct <#TITLE#>: ReducerProtocol {
 
 public extension <#TITLE#> {
   struct State: Equatable {
-    // TODO: add <#TITLE#>'s state
+    // TODO: add state for <#TITLE#>
   }
 }
 
@@ -25,6 +25,6 @@ public extension <#TITLE#> {
 
 public extension <#TITLE#> {
   enum Action {
-    // TODO: add <#TITLE#>'s actions
+    // TODO: add actions for <#TITLE#>
   }
 }

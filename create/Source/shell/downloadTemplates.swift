@@ -3,19 +3,19 @@
 import Foundation
 
 extension Shell {
-  static func fetchTemplates(folders: [Template], files: [Template]) throws -> URL {
-    let temp = try Files.getTempDir("leolem.create.downloads")
-    let patterns = folders.map { "templates/\($0.rawValue)" } + files.map { "/templates/\($0.rawValue)" }
+  static func fetchTemplates(_ templates: [String]) throws -> URL {
+    let downloads = try Files.getTempDir("leolem.create.downloads")
+    let patterns = templates.map { "templates/\($0)" }
 
     try run(
-      "cd \(temp.path())",
+      "cd \(downloads.path())",
       "git init",
       "git remote add origin https://github.com/Leo-Lem/create.git",
       "git sparse-checkout set --no-cone \(patterns.joined(separator: " "))",
       "git pull origin \(templateBranch)"
     )
 
-    return temp.appending(component: "templates")
+    return downloads.appending(component: "templates")
   }
 
   #if DEBUG

@@ -6,7 +6,7 @@ import XCTest
 
 @MainActor
 final class <#TITLE#>Tests: XCTestCase {
-  // TODO: Add <#TITLE#>'s unit tests
+  // TODO: Add unit tests for <#TITLE#>
 
   func test<#Feature#>_given<#Precondition#>_when<#Action#>_then<#Outcome#>() async throws {
     <#Given#>

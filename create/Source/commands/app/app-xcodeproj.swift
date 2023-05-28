@@ -1,55 +1,24 @@
-// Created by Leopold Lemmermann on 27.05.23.
+// Created by Leopold Lemmermann on 28.05.23.
 
 import Foundation
 
 extension App {
-  var replacements: [Replacement] {
-    [
-      .title(location.title),
-      .name(),
-      .date,
-      .year,
-      .organisation(options.organisation),
-      .teamId(options.teamID),
-      workspace
-    ] + project
-  }
-
-  var workspace: Replacement {
-    var files = [String]()
-
-    if general.repo {
-      files.append(".git")
-      files.append(Template.gitignore.rawValue)
-    }
-    if general.readme { files.append(Template.readme.rawValue) }
-    if general.license { files.append(Template.license.rawValue) }
-
-    files.append("app/app.xcodeproj")
-    files.append("res")
-
-    return .other(
-      match: "<#WORKSPACE_FILES#>",
-      replacement: files.map { "<FileRef location = \"group:\($0)\"></FileRef>" }.joined(separator: "\n")
-    )
-  }
-
-  var project: [Replacement] {
-    var children = [PBXProjChild]()
+  var xcodeproj: [Replacement] {
+    var children = [XcodeprojChild]()
     var configChildIds = [String]()
 
     if general.repo {
-      let id = PBXProjChild.generateId()
-      children += [.fileRef(id, path: Template.gitignore.rawValue, sourceTree: .project)]
+      let id = XcodeprojChild.generateId()
+      children += [.fileRef(id, path: Template.gitignore.name, sourceTree: .project)]
       configChildIds.append(id)
     }
 
-    if options.swiftlint {
-      let id = PBXProjChild.generateId()
-      children += [.fileRef(id, path: Template.swiftlint.rawValue, sourceTree: .project)]
+    if swiftlint {
+      let id = XcodeprojChild.generateId()
+      children += [.fileRef(id, path: Template.swiftlint.name, sourceTree: .project)]
       configChildIds.append(id)
 
-      let scriptId = PBXProjChild.generateId()
+      let scriptId = XcodeprojChild.generateId()
       children += [
         .scriptId(scriptId),
         .script(scriptId, script: "export PATH=\\\"$PATH:/opt/homebrew/bin\\\"\\n"
@@ -61,15 +30,15 @@ extension App {
       ]
     }
 
-    if options.tca {
-      let refId = PBXProjChild.generateId()
+    if tca {
+      let refId = XcodeprojChild.generateId()
       children += [
         .packageRefId(refId),
         .packageRef(refId, url: "https://github.com/pointfreeco/swift-composable-architecture", minVersion: "0.53.2")
       ]
 
-      let depId = PBXProjChild.generateId()
-      let buildId = PBXProjChild.generateId()
+      let depId = XcodeprojChild.generateId()
+      let buildId = XcodeprojChild.generateId()
       children += [
         .packageDepId(depId),
         .packageDep(depId, ref: refId, name: "ComposableArchitecture"),
@@ -78,7 +47,7 @@ extension App {
       ]
     }
 
-    let replacements = PBXProjChild.Match.allCases
+    let replacements = XcodeprojChild.Match.allCases
       .map { match in
         Replacement.other(
           match: match.rawValue,
@@ -90,7 +59,7 @@ extension App {
   }
 }
 
-enum PBXProjChild {
+enum XcodeprojChild {
   case buildRef(_ id: String, ref: String, isProduct: Bool = false)
   case fileRef(_ id: String, path: String, sourceTree: SourceTree)
   case packageRef(_ id: String, url: String, minVersion: String)
@@ -102,7 +71,7 @@ enum PBXProjChild {
   case packageBuildId(_ id: String)
 }
 
-extension PBXProjChild {
+extension XcodeprojChild {
   static func generateId() -> String { UUID().uuidString.replacing("-", with: "") }
 
   var match: Match {
@@ -144,14 +113,14 @@ extension PBXProjChild {
   }
 }
 
-extension PBXProjChild {
+extension XcodeprojChild {
   enum SourceTree: String {
     case project = "SOURCE_ROOT"
     case group = "\"<group>\""
   }
 }
 
-extension PBXProjChild {
+extension XcodeprojChild {
   enum Match: String, CaseIterable {
     case buildRef = "<#PROJECT_BUILD_REFS#>"
     case fileRef = "<#PROJECT_FILE_REFS#>"

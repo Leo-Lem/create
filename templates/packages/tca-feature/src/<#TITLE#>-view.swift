@@ -13,6 +13,8 @@ public struct <#TITLE#>View: View {
   }
 }
 
+extension Store: ObservableObject {}
+
 // MARK: - (RENDER)
 
 extension <#TITLE#>View {

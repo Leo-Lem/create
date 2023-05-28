@@ -4,11 +4,9 @@ import ArgumentParser
 import struct Foundation.URL
 
 protocol CreateCommand: ParsableCommand {
-  static var category: String { get }
+  var general: CreateCommandOptions { get }
 
-  var folders: [Template] { get }
-  var files: [Template] { get }
-  var replacements: [Replacement] { get }
-
+  func add(templates: inout [Template]) throws
   func stage(from downloads: URL, to stage: URL) throws
+  func add(replacements: inout [Replacement]) throws
 }
