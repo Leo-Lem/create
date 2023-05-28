@@ -4,7 +4,7 @@ import struct Foundation.URL
 
 enum Template {
   case package(Package.Kind)
-  case app
+  case app(App.Kind)
   case res
   case license
   case readme
@@ -13,6 +13,7 @@ enum Template {
   case githubCI
   case xcworkspace
   case xcproject
+  case xcscheme
   case other(String)
 }
 
@@ -24,7 +25,12 @@ extension Template {
       case .plain: return "packages/plain"
       case .tcaFeature: return "packages/tca-feature"
       }
-    case .app: return "app"
+    case let .app(kind):
+      switch kind {
+      case .default: return "apps/default"
+      case .simple: return "apps/simple"
+      case .tca: return "apps/tca"
+      }
     case .res: return "res"
     case .license: return "LICENSE"
     case .readme: return "README.md"
@@ -33,6 +39,7 @@ extension Template {
     case .githubCI: return ".github"
     case .xcworkspace: return ".xcworkspace"
     case .xcproject: return ".xcodeproj"
+    case .xcscheme: return ".xcscheme"
     case .other(let name): return name
     }
   }

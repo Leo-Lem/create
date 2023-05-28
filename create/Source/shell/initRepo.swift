@@ -3,7 +3,7 @@
 import struct Foundation.URL
 
 extension Shell {
-  static func setupRepo(at url: URL) throws {
+  static func initRepo(at url: URL) throws {
     try run(
       "cd \(url.path())",
       "git init",

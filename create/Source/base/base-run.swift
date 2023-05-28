@@ -1,8 +1,6 @@
 // Created by Leopold Lemmermann on 27.05.23.
 
-import func Foundation.fflush
-import var Foundation.stdout
-import struct Foundation.URL
+import Foundation
 
 extension CreateCommand {
   func run() {
@@ -23,7 +21,7 @@ extension CreateCommand {
 
       if general.repo {
         print("Initializing git repository…")
-        try Shell.setupRepo(at: general.project)
+        try Shell.initRepo(at: general.project)
       }
 
       if general.open {
@@ -66,7 +64,7 @@ private extension CreateCommand {
   func replace(in stage: URL) throws {
     var replacements  = [Replacement]()
     try add(replacements: &replacements)
-    replacements.append(contentsOf: [.title(general.title), .name(general.name), .date, .year])
+    replacements.append(contentsOf: [.title(general.title), try .name(general.name), .date, .year])
 
     try replacements.forEach { try $0.replace(in: stage) }
   }
@@ -75,4 +73,14 @@ private extension CreateCommand {
     try Files.create(at: project)
     try Files.moveAll(in: stage, to: project)
   }
+}
+
+extension Replacement {
+  static func title(_ title: String) -> Self { .replacement("<#TITLE#>", title) }
+  static func name(_ name: String?) throws -> Self { .replacement("<#NAME#>", try name ?? Files.getName()) }
+
+  static let date = Self.replacement(
+    "<#DATE#>", Date.now.formatted(Date.FormatStyle().day(.twoDigits).month(.twoDigits).year(.defaultDigits))
+  )
+  static let year = Self.replacement("<#YEAR#>", Date.now.formatted(Date.FormatStyle().year(.defaultDigits)))
 }

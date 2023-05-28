@@ -1,9 +1,9 @@
 // Created by Leopold Lemmermann on 28.05.23.
 
-import Foundation
+import struct Foundation.UUID
 
-extension App {
-  var xcodeproj: [Replacement] {
+extension Replacement {
+  static func xcodeprojTCA(_ general: CreateCommandOptions, swiftlint: Bool) -> Replacement {
     var children = [XcodeprojChild]()
     var configChildIds = [String]()
 
@@ -30,32 +30,32 @@ extension App {
       ]
     }
 
-    if tca {
-      let refId = XcodeprojChild.generateId()
-      children += [
-        .packageRefId(refId),
-        .packageRef(refId, url: "https://github.com/pointfreeco/swift-composable-architecture", minVersion: "0.53.2")
-      ]
+    let refId = XcodeprojChild.generateId()
+    children += [
+      .packageRefId(refId),
+      .packageRef(refId, url: "https://github.com/pointfreeco/swift-composable-architecture", minVersion: "0.53.2")
+    ]
 
-      let depId = XcodeprojChild.generateId()
-      let buildId = XcodeprojChild.generateId()
-      children += [
-        .packageDepId(depId),
-        .packageDep(depId, ref: refId, name: "ComposableArchitecture"),
-        .buildRef(buildId, ref: depId, isProduct: true),
-        .packageBuildId(buildId)
-      ]
-    }
+    let depId = XcodeprojChild.generateId()
+    let buildId = XcodeprojChild.generateId()
+    children += [
+      .packageDepId(depId),
+      .packageDep(depId, ref: refId, name: "ComposableArchitecture"),
+      .buildRef(buildId, ref: depId, isProduct: true),
+      .packageBuildId(buildId)
+    ]
 
     let replacements = XcodeprojChild.Match.allCases
       .map { match in
-        Replacement.other(
-          match: match.rawValue,
-          replacement: children.filter { $0.match == match }.map(\.replacement).joined(separator: match.separator)
+        Replacement.replacement(
+          match.rawValue, children.filter { $0.match == match }.map(\.replacement).joined(separator: match.separator)
         )
       }
 
-    return replacements + [.other(match: "<#CONFIG_CHILD_IDS#>", replacement: configChildIds.joined(separator: ",\n"))]
+    return .replacements(
+      replacements
+        + [.replacement("<#CONFIG_CHILD_IDS#>", configChildIds.joined(separator: ",\n"))]
+    )
   }
 }
 
@@ -103,10 +103,10 @@ extension XcodeprojChild {
       return "\(id) = {isa = XCSwiftPackageProductDependency; package = \(ref); productName = \(name);};"
     case let .script(id, script):
       return "\(id) = {isa = PBXShellScriptBuildPhase; buildActionMask = 2147483647; alwaysOutOfDate = 1;"
-      + "files = ();inputFileListPaths = (); inputPaths = (); outputFileListPaths = (); outputPaths = (); "
-      + "runOnlyForDeploymentPostprocessing = 0; "
-      + "shellPath = /bin/zsh; shellScript = \"\(script)\";"
-      + "};"
+        + "files = ();inputFileListPaths = (); inputPaths = (); outputFileListPaths = (); outputPaths = (); "
+        + "runOnlyForDeploymentPostprocessing = 0; "
+        + "shellPath = /bin/zsh; shellScript = \"\(script)\";"
+        + "};"
     case let .scriptId(id), let .packageDepId(id), let .packageRefId(id), let .packageBuildId(id):
       return id
     }

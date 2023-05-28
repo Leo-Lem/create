@@ -18,7 +18,7 @@ final class ShellTests: XCTestCase {
     try? FileManager.default.removeItem(at: temp)
     try FileManager.default.createDirectory(at: temp, withIntermediateDirectories: true)
     
-    try Shell.setupRepo(at: temp)
+    try Shell.initRepo(at: temp)
     
     XCTAssertTrue(FileManager.default.fileExists(atPath: temp.appending(component: ".git").path()))
     

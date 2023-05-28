@@ -17,7 +17,7 @@
                BlueprintIdentifier = "6E39CC112A20561800E99488"
                BuildableName = "<#TITLE#>.app"
                BlueprintName = "<#TITLE#>"
-               ReferencedContainer = "container:app/app.xcodeproj">
+               ReferencedContainer = "container:<#SCHEME_CONTAINER#>">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,13 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
-         <TestPlanReference
-            reference = "container:app/test/Unit.xctestplan"
-            default = "YES">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:app/test/Full.xctestplan">
-         </TestPlanReference>
+        <#SCHEME_TESTPLANS#>
       </TestPlans>
    </TestAction>
    <LaunchAction
@@ -54,29 +48,10 @@
             BlueprintIdentifier = "6E39CC112A20561800E99488"
             BuildableName = "<#TITLE#>.app"
             BlueprintName = "<#TITLE#>"
-            ReferencedContainer = "container:app/app.xcodeproj">
+            ReferencedContainer = "container:<#SCHEME_CONTAINER#>">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
-   <ProfileAction
-      buildConfiguration = "Release"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = ""
-      useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6E39CC112A20561800E99488"
-            BuildableName = "<#TITLE#>.app"
-            BlueprintName = "<#TITLE#>"
-            ReferencedContainer = "container:app/app.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-   </ProfileAction>
-   <AnalyzeAction
-      buildConfiguration = "Debug">
-   </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">

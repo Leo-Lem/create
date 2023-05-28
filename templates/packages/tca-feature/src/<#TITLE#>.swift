@@ -4,8 +4,9 @@ import ComposableArchitecture
 
 public struct <#TITLE#>: ReducerProtocol {
   public func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+    // TODO: add reducer for <#TITLE#>
+    
     switch action {
-      // TODO: add reducer for <#TITLE#>
     default: break
     }
 
