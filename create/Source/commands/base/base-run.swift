@@ -46,14 +46,14 @@ private extension CreateCommand {
     if general.license { downloads.append(.license) }
     if general.repo { downloads.append(.gitignore) }
 
-    return try Shell.fetchTemplates(downloads.map(\.name))
+    return try Shell.fetchTemplates(downloads.map(\.path))
   }
 
   func stage(from downloads: URL) throws -> URL {
     let stage = try Files.getTempDir("leolem.create.staging")
 
     if general.readme { try Template.readme.move(from: downloads, to: stage) }
-    if general.license { try Template.license.move(from: downloads, to: stage) }
+    if general.license { try Template.license.move(from: downloads, to: stage, rename: "LICENSE") }
     if general.repo { try Template.gitignore.move(from: downloads, to: stage) }
 
     try self.stage(from: downloads, to: stage)
@@ -61,26 +61,8 @@ private extension CreateCommand {
     return stage
   }
 
-  func replace(in stage: URL) throws {
-    var replacements  = [Replacement]()
-    try add(replacements: &replacements)
-    replacements.append(contentsOf: [.title(general.title), try .name(general.name), .date, .year])
-
-    try replacements.forEach { try $0.replace(in: stage) }
-  }
-
   func unstage(from stage: URL, to project: URL) throws {
     try Files.create(at: project)
     try Files.moveAll(in: stage, to: project)
   }
-}
-
-extension Replacement {
-  static func title(_ title: String) -> Self { .replacement("<#TITLE#>", title) }
-  static func name(_ name: String?) throws -> Self { .replacement("<#NAME#>", try name ?? Files.getName()) }
-
-  static let date = Self.replacement(
-    "<#DATE#>", Date.now.formatted(Date.FormatStyle().day(.twoDigits).month(.twoDigits).year(.defaultDigits))
-  )
-  static let year = Self.replacement("<#YEAR#>", Date.now.formatted(Date.FormatStyle().year(.defaultDigits)))
 }

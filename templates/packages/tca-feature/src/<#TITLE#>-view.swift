@@ -8,6 +8,7 @@ public struct <#TITLE#>View: View {
 
   public var body: some View {
     WithViewStore(store) { vs in
+      // TODO: configure <#TITLE#> view
       Render()
     }
   }

@@ -33,7 +33,7 @@ extension HelloView {
   struct HelloView_Previews: PreviewProvider {
     @ViewBuilder
     static var previews: some View {
-      HelloView.Render(name: "<#NAME#>") {}
+      HelloView.Render(path: "<#NAME#>") {}
     }
   }
 #endif

@@ -13,6 +13,11 @@ struct TestPlan {
   let path: String
   let isDefault: Bool
 
+  init(path: String, isDefault: Bool = false) {
+    self.path = path
+    self.isDefault = isDefault
+  }
+
   var description: String {
     "<TestPlanReference "
       + "reference = \"container:\(path)\" \(isDefault ? "default = \"YES\"" : "")>"

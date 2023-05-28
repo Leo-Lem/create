@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "92EECEB2-CC76-4D53-979F-464091A9A4DB",
+      "id" : "F9F1C368-C363-4BFF-8B04-AAD0D54B903B",
       "name" : "Config",
       "options" : {
 
@@ -12,7 +12,7 @@
     "codeCoverage" : {
       "targets" : [
         {
-          "containerPath" : "container:app/app.xcodeproj",
+          "containerPath" : "container:<#SCHEME_CONTAINER#>",
           "identifier" : "6E39CC112A20561800E99488",
           "name" : "<#TITLE#>"
         }
@@ -24,9 +24,16 @@
     {
       "parallelizable" : true,
       "target" : {
-        "containerPath" : "container:app/app.xcodeproj",
+        "containerPath" : "container:<#SCHEME_CONTAINER#>",
         "identifier" : "6EE394CA2A205F0500CAAEAC",
         "name" : "<#TITLE#>Tests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:<#SCHEME_CONTAINER#>",
+        "identifier" : "6EE394D82A205F0C00CAAEAC",
+        "name" : "<#TITLE#>UITests"
       }
     }
   ],

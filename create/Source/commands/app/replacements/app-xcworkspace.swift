@@ -6,12 +6,12 @@ extension Replacement {
   static func xcworkspace(_ general: CreateCommandOptions) -> Self {
     var files = [String]()
 
-    if general.repo { files += [".git", Template.gitignore.name] }
-    if general.readme { files.append(Template.readme.name) }
-    if general.license { files.append(Template.license.name) }
+    if general.repo { files += [".git", Template.gitignore.path] }
+    if general.readme { files.append(Template.readme.path) }
+    if general.license { files.append(Template.license.path) }
 
     files.append("app/app.xcodeproj")
-    files.append(Template.res.name)
+    files.append("res")
 
     return .xcworkspace(files)
   }

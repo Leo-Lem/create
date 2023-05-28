@@ -9,13 +9,13 @@ extension Replacement {
 
     if general.repo {
       let id = XcodeprojChild.generateId()
-      children += [.fileRef(id, path: Template.gitignore.name, sourceTree: .project)]
+      children += [.fileRef(id, path: Template.gitignore.path, sourceTree: .project)]
       configChildIds.append(id)
     }
 
     if swiftlint {
       let id = XcodeprojChild.generateId()
-      children += [.fileRef(id, path: Template.swiftlint.name, sourceTree: .project)]
+      children += [.fileRef(id, path: Template.swiftlint.path, sourceTree: .project)]
       configChildIds.append(id)
 
       let scriptId = XcodeprojChild.generateId()

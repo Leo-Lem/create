@@ -21,7 +21,7 @@ struct App: CreateCommand {
   var swiftlint = true
 
   func add(templates: inout [Template]) throws {
-    templates = [.app(template), .xcworkspace, .xcproject, .res]
+    templates = [.app(template), .xcworkspace, .xcproject]
     if swiftlint { templates.append(.swiftlint) }
   }
 
@@ -29,16 +29,15 @@ struct App: CreateCommand {
     try Template.app(template).move(from: downloads, to: stage)
     try Template.xcworkspace.move(from: downloads, to: stage, rename: "<#TITLE#>.xcworkspace")
     try Template.xcproject.move(
-      from: downloads, to: stage.appending(component: Template.app(template).name), rename: "app.xcodeproj"
+      from: downloads, to: stage.appending(component: Template.app(template).path), rename: "app.xcodeproj"
     )
-    try Template.res.move(from: downloads, to: stage)
 
     if general.repo {
-      try Template.gitignore.copy(from: downloads, to: stage.appending(component: Template.app(template).name))
+      try Template.gitignore.copy(from: downloads, to: stage.appending(component: Template.app(template).path))
     }
 
     if swiftlint {
-      try Template.swiftlint.move(from: downloads, to: stage.appending(component: Template.app(template).name))
+      try Template.swiftlint.move(from: downloads, to: stage.appending(component: Template.app(template).path))
     }
   }
 
@@ -46,7 +45,7 @@ struct App: CreateCommand {
     replacements.append(.organisation(organisation))
     replacements.append(.teamId(teamID))
     replacements.append(.xcworkspace(general))
-    replacements.append(.xcscheme())
+    replacements.append(.xcscheme(template))
 
     switch template {
     case .default: break

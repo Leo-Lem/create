@@ -22,7 +22,7 @@ struct HelloLabel: View {
 #if DEBUG
   struct HelloLabel_Previews: PreviewProvider {
     static var previews: some View {
-      HelloLabel(name: name)
+      HelloLabel(path: path)
     }
   }
 #endif
