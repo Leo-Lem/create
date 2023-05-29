@@ -4,6 +4,6 @@ import struct Foundation.URL
 
 extension Files {
   static func getTempDir(_ named: String) throws -> URL {
-    return try create(at: manager.temporaryDirectory.appending(component: named))
+    try create(at: manager.temporaryDirectory.appending(component: named))
   }
 }
