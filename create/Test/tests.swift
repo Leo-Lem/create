@@ -27,6 +27,7 @@ final class CreateTests: XCTestCase {
         "app",
         title,
         "--no-open",
+        "--tca",
         "-p", temp.path(),
         "-o", "test.leolem"
       ]) as? App

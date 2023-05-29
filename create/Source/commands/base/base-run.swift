@@ -2,6 +2,8 @@
 
 import Foundation
 
+// TODO: make actions an array to control order of execution
+
 extension CreateCommand {
   func run() {
     do {
@@ -11,25 +13,26 @@ extension CreateCommand {
 
       if general.readme {
         let readme = "README.md"
-        actions.insert(.download(readme))
-        actions.insert(.stage(readme))
-        actions.insert(.replace("<#TITLE#>", replacement: general.title))
+        actions.formUnion([.download(readme), .stage(readme), .replace("<#TITLE#>", replacement: general.title)])
       }
 
       if general.license {
         let license = "licenses/MIT"
-        actions.insert(.download(license))
-        actions.insert(.stage(license, rename: "LICENSE"))
-        actions.insert(.replace("<#TITLE#>", replacement: general.title))
-        actions.insert(.replace("<#YEAR#>", replacement: Date.now.formatted(Date.FormatStyle().year(.defaultDigits))))
+        actions.formUnion([
+          .download(license),
+          .stage(license, rename: "LICENSE"),
+          .replace("<#YEAR#>", replacement: Date.now.formatted(Date.FormatStyle().year(.defaultDigits)))
+        ])
       }
 
       if general.repo {
         let gitignore = ".gitignore"
-        actions.insert(.download(gitignore))
-        actions.insert(.stageCopy(gitignore))
-        actions.insert(.replace("<#TITLE#>", replacement: general.title))
+        actions.formUnion([.download(gitignore), .stageCopy(gitignore)])
       }
+
+      actions.insert(.replace("<#NAME#>", replacement: try Files.getName()))
+      actions.insert(.replace("<#DATE#>", replacement: Date.now
+          .formatted(Date.FormatStyle().year(.defaultDigits).month(.twoDigits).day(.twoDigits))))
 
       print("Fetching templates…")
       let templates = try download(actions)

@@ -6,10 +6,8 @@ extension App {
   func xcodeproj(name: String) -> Set<Action> {
     let file = "xcode/.xcodeproj"
 
-    let src = [fileRef("App-reducer.swift"), fileRef("App-view.swift"), fileRef("App")]
+    let src = [fileRef("App-reducer.swift"), fileRef("App-view.swift"), fileRef("App.swift")]
     let srcBuild = src.map { buildRef($0.id) }
-
-    // TODO: add build ref ids
     
     return [
       .download(file),
@@ -29,7 +27,7 @@ extension App {
     let id = id()
     return (
       id,
-      "\(id) = {isa = PBXFileReference; path = \(path); sourceTree = \(isAbsolute ? "SOURCE_ROOT" : "\"<group\"");};"
+      "\(id) = {isa = PBXFileReference; path = \(path); sourceTree = \(isAbsolute ? "SOURCE_ROOT" : "\"<group>\"");};"
     )
   }
 
