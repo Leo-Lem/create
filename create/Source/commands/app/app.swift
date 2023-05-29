@@ -20,14 +20,15 @@ struct App: CreateCommand {
 
   func addActions(to actions: inout Set<Action>) {
     actions.formUnion(templateActions())
-
-    if template == .tca { actions.formUnion(xcworkspace()) }
-
-    actions.formUnion(xcodeproj(name: "app/app.xcodeproj"))
-    
+    actions.formUnion(xcodeproj(name: "app/app"))
     actions.formUnion(xcscheme())
 
-    if general.repo { actions.insert(.stageCopy(".gitignore", rename: "app/.gitignore")) }
+    if template == .tca {
+      actions.formUnion(xcworkspace())
+      actions.formUnion(tcaActions())
+    }
+
+    if general.repo { actions.formUnion(gitignore()) }
     if swiftlint { actions.formUnion(swiftlintActions()) }
 
     // TODO: add feature package
