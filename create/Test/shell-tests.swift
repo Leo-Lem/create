@@ -6,11 +6,14 @@ import XCTest
 
 final class ShellTests: XCTestCase {
   func test_givenArgumentsAreValid_whenDownloadingTemplates_thenFilesAreDownloaded() throws {
-    let url = try Shell.fetchTemplates(folders: [.package], files: [.readme, .license])
+    let temp = FileManager.default.temporaryDirectory.appending(component: "download-test")
+    let url = try Shell.fetchTemplates(["packages/plain", "README.md", "licenses/MIT"], to: temp)
+
+    // TODO: figure out the issue here
     
-    XCTAssertTrue(FileManager.default.fileExists(atPath: url.appending(component: Template.package.rawValue).path()))
-    XCTAssertTrue(FileManager.default.fileExists(atPath: url.appending(component: Template.readme.rawValue).path()))
-    XCTAssertTrue(FileManager.default.fileExists(atPath: url.appending(component: Template.license.rawValue).path()))
+    XCTAssertTrue(FileManager.default.fileExists(atPath: url.appending(path: "packages/plain").path()))
+    XCTAssertTrue(FileManager.default.fileExists(atPath: url.appending(path: "README.md").path()))
+    XCTAssertTrue(FileManager.default.fileExists(atPath: url.appending(path: "licenses/MIT").path()))
   }
   
   func test_givenFolderExists_whenSettingUpRepo_thenCreatesGitFolderAndInitialCommit() throws {

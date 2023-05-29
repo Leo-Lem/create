@@ -74,12 +74,13 @@ private extension CreateCommand {
   func stage(_ actions: Set<Action>, from templates: URL) throws -> URL {
     let stage = try Files.getTempDir("leolem.create.staging")
 
-    try actions.compactMap(\.stagePath).forEach { name, rename, copy in
-      let origin = templates.appending(path: name)
-      var destination = templates.appending(path: rename ?? name)
+    try actions.compactMap(\.stagePath).forEach { name, rename, copy, inDir in
+      let origin = templates.appending(path: name), destination = stage.appending(path: rename ?? name)
 
       if copy {
         try Files.copy(from: origin, to: destination)
+      } else if inDir {
+        try Files.moveAll(in: origin, to: stage.appending(path: rename ?? ""))
       } else {
         try Files.move(from: origin, to: destination)
       }

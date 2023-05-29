@@ -7,11 +7,11 @@ final class CreateTests: XCTestCase {
     let title = "TestPackage"
 
     let package = try XCTUnwrap(
-      try Create.parseAsRoot(["package", "--no-open", "-t", title, "-p", temp.path()]) as? Package
+      try Create.parseAsRoot(["package", title, "--no-open", "-p", temp.path()]) as? Package
     )
 
-    XCTAssertEqual(package.location.title, title)
-    XCTAssertEqual(package.location.project, temp.appending(component: title))
+    XCTAssertEqual(package.general.title, title)
+    XCTAssertEqual(package.general.project, temp.appending(component: title))
 
     package.run()
 
@@ -25,15 +25,15 @@ final class CreateTests: XCTestCase {
     let app = try XCTUnwrap(
       try Create.parseAsRoot([
         "app",
+        title,
         "--no-open",
-        "-t", title,
         "-p", temp.path(),
         "-o", "test.leolem"
       ]) as? App
     )
 
-    XCTAssertEqual(app.location.title, title)
-    XCTAssertEqual(app.location.project, temp.appending(component: title))
+    XCTAssertEqual(app.general.title, title)
+    XCTAssertEqual(app.general.project, temp.appending(component: title))
 
     app.run()
 

@@ -5,7 +5,7 @@ import struct Foundation.URL
 
 extension Files {
   static func move(from origin: URL, to destination: URL) throws {
-    try manager.createDirectory(at: destination.deletingLastPathComponent(), withIntermediateDirectories: true)
+    try? manager.createDirectory(at: destination.deletingLastPathComponent(), withIntermediateDirectories: true)
     try manager.moveItem(at: origin, to: destination)
   }
 

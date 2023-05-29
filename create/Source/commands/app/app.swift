@@ -13,13 +13,22 @@ struct App: CreateCommand {
   var organisation: String
 
   @Option(name: [.long, .customShort("i")], help: "Your team ID. (default: select manually in Xcode)")
-  var teamID: String?
+  var teamId: String?
 
   @Flag(name: [.long, .customShort("l")], inversion: .prefixedNo, help: "Use SwiftLint.")
   var swiftlint = true
 
   func addActions(to actions: inout Set<Action>) {
-    // TODO: implement app
+    actions.formUnion(templateActions())
+
+    if template == .tca { actions.formUnion(xcworkspace()) }
+
+    actions.formUnion(xcodeproj())
+    
+    actions.formUnion(xcscheme())
+
+    if general.repo { actions.insert(.stageCopy(".gitignore", rename: "app/.gitignore")) }
+    if swiftlint { actions.formUnion(swiftlintActions()) }
   }
 }
 
@@ -30,3 +39,8 @@ extension App {
   }
 }
 
+import struct Foundation.UUID
+
+extension App {
+  func generateId() -> String { UUID().uuidString.replacing("-", with: "") }
+}

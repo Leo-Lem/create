@@ -20,12 +20,12 @@ struct Package: CreateCommand {
 
   func addActions(to actions: inout Set<Action>) {
     actions.insert(.download("packages/\(template.rawValue)"))
-    actions.insert(.stage("packages/\(template.rawValue)", rename: "..")) // verify this rename puts files into root
+    actions.insert(.stageAll("packages/\(template.rawValue)"))
 
     actions.insert(.replace("<#SWIFT_TOOLS_VERSION#>", replacement: swiftToolsVersion))
     actions.insert(.replace("<#PLATFORMS#>", replacement: platforms.joined(separator: ", ")))
 
-    let testPlanPath = "test/ <#TITLE#>.xctestplan"
+    let testPlanPath = "test/ Unit.xctestplan"
     actions.formUnion(Action.testplan(name: "unit", path: testPlanPath))
     actions.formUnion(Action.xcscheme(
       at: ".swiftpm/xcode/xcshareddata/xcschemes/<#TITLE#>.xcscheme",
