@@ -4,12 +4,13 @@ extension App {
   func templateActions() -> Set<Action> {
     let app = "apps/\(template.rawValue)"
 
-    let src: String
+    let root: String?
+
     switch template {
-    case .simple: src = "src"
-    case .tca: src = "app/src"
+    case .simple: root = nil
+    case .tca: root = "app"
     }
 
-    return [.download(app), .stageAll(app, rename: src)]
+    return [.download(app), .stageAll(app, rename: root)]
   }
 }
