@@ -109,10 +109,7 @@
 		6EE3948F2A2056FB00CAAEAC /* src */ = {
 			isa = PBXGroup;
 			children = (
-				6EE394902A2056FB00CAAEAC /* App.swift */,
-				6EE394912A2056FB00CAAEAC /* App-view.swift */,
-				6EE394A02A20581000CAAEAC /* pages */,
-				6EE394A52A20598500CAAEAC /* components */,
+				<#PROJECT_SRC_FILE_REF_IDS#>
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -172,7 +169,7 @@
 				6EE394E72A205FC700CAAEAC /* config.swift */,
 				6EE394C62A205E6F00CAAEAC /* <#TITLE#>.entitlements */,
 				6EE394ED2A2061ED00CAAEAC /* <#TITLE#>-info.plist */,
-				<#CONFIG_CHILD_IDS#> /* .gitignore, .swiftlint.yml */
+				<#PROJECT_CONFIG_CHILD_IDS#>
 			);
 			path = config;
 			sourceTree = "<group>";
@@ -191,22 +188,6 @@
 				6EE394A32A2058EE00CAAEAC /* <#TITLE#>-uitests.swift */,
 			);
 			path = ui;
-			sourceTree = "<group>";
-		};
-		6EE394A02A20581000CAAEAC /* pages */ = {
-			isa = PBXGroup;
-			children = (
-				6EE394A62A20599500CAAEAC /* <#TITLE#>-view.swift */,
-			);
-			path = pages;
-			sourceTree = "<group>";
-		};
-		6EE394A52A20598500CAAEAC /* components */ = {
-			isa = PBXGroup;
-			children = (
-				6EE394A82A2059ED00CAAEAC /* Hello-view.swift */,
-			);
-			path = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

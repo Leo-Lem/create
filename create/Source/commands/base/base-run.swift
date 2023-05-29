@@ -93,6 +93,8 @@ private extension CreateCommand {
     try actions.compactMap(\.matchAndReplacement).forEach { match, replacement in
       try Shell.replace(match, in: stage, with: replacement)
     }
+
+    try Shell.replace("<#[A-Z]*#>", in: stage, with: "")
   }
 
   func unstage(from stage: URL, to project: URL) throws {

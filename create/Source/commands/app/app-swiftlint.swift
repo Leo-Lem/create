@@ -3,7 +3,7 @@
 extension App {
   func swiftlintActions() -> Set<Action> {
     let file = ".swiftlint.yml"
-    let id = generateId()
+    let id = id()
     let script = "export PATH=\\\"$PATH:/opt/homebrew/bin\\\"\\n"
     + "if which swiftlint > /dev/null; then\\n"
     + "  swiftlint\\n"

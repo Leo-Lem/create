@@ -23,12 +23,14 @@ struct App: CreateCommand {
 
     if template == .tca { actions.formUnion(xcworkspace()) }
 
-    actions.formUnion(xcodeproj())
+    actions.formUnion(xcodeproj(name: "app/app.xcodeproj"))
     
     actions.formUnion(xcscheme())
 
     if general.repo { actions.insert(.stageCopy(".gitignore", rename: "app/.gitignore")) }
     if swiftlint { actions.formUnion(swiftlintActions()) }
+
+    // TODO: add feature package
   }
 }
 
@@ -37,10 +39,4 @@ extension App {
     case simple
     case tca
   }
-}
-
-import struct Foundation.UUID
-
-extension App {
-  func generateId() -> String { UUID().uuidString.replacing("-", with: "") }
 }
