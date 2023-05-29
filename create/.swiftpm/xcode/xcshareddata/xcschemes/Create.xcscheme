@@ -121,7 +121,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--no-repo"
+            argument = "--tca"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument

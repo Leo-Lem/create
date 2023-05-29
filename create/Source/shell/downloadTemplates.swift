@@ -3,8 +3,7 @@
 import Foundation
 
 extension Shell {
-  static func fetchTemplates(_ templates: [String]) throws -> URL {
-    let downloads = try Files.getTempDir("leolem.create.downloads")
+  static func fetchTemplates(_ templates: [String], to downloads: URL) throws -> URL {
     let patterns = templates.map { "templates/\($0)" }
 
     try run(

@@ -6,7 +6,5 @@ import struct Foundation.URL
 protocol CreateCommand: ParsableCommand {
   var general: CreateCommandOptions { get }
 
-  func add(templates: inout [Template]) throws
-  func stage(from downloads: URL, to stage: URL) throws
-  func add(replacements: inout [Replacement]) throws
+  func addActions(to actions: inout Set<Action>)
 }

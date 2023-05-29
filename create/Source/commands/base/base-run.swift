@@ -6,15 +6,39 @@ extension CreateCommand {
   func run() {
     do {
       print("Starting \(category) creation…")
+      var actions = Set<Action>()
+      addActions(to: &actions)
+
+      if general.readme {
+        let readme = "README.md"
+        actions.insert(.download(readme))
+        actions.insert(.stage(readme))
+        actions.insert(.replace("<#TITLE#>", replacement: general.title))
+      }
+
+      if general.license {
+        let license = "licenses/MIT"
+        actions.insert(.download(license))
+        actions.insert(.stage(license, rename: "LICENSE"))
+        actions.insert(.replace("<#TITLE#>", replacement: general.title))
+        actions.insert(.replace("<#YEAR#>", replacement: Date.now.formatted(Date.FormatStyle().year(.defaultDigits))))
+      }
+
+      if general.repo {
+        let gitignore = ".gitignore"
+        actions.insert(.download(gitignore))
+        actions.insert(.stageCopy(gitignore))
+        actions.insert(.replace("<#TITLE#>", replacement: general.title))
+      }
 
       print("Fetching templates…")
-      let downloads = try fetchTemplates()
+      let templates = try download(actions)
 
       print("Preparing your \(category)…")
-      let stage = try self.stage(from: downloads)
+      let stage = try stage(actions, from: templates)
 
       print("Individualising templates…")
-      try replace(in: stage)
+      try replace(actions, in: stage)
 
       print("Moving to '\(general.project.path())'…")
       try unstage(from: stage, to: general.project)
@@ -39,26 +63,35 @@ extension CreateCommand {
 private extension CreateCommand {
   var category: String { Mirror(reflecting: self).description.split(separator: " ").last?.lowercased() ?? "project" }
 
-  func fetchTemplates() throws -> URL {
-    var downloads = [Template]()
-    try add(templates: &downloads)
-    if general.readme { downloads.append(.readme) }
-    if general.license { downloads.append(.license) }
-    if general.repo { downloads.append(.gitignore) }
+  func download(_ actions: Set<Action>) throws -> URL {
+    let downloads = try Files.getTempDir("leolem.create.downloads")
 
-    return try Shell.fetchTemplates(downloads.map(\.path))
+    let templates = try Shell.fetchTemplates(actions.compactMap(\.downloadPath), to: downloads)
+
+    return templates
   }
 
-  func stage(from downloads: URL) throws -> URL {
+  func stage(_ actions: Set<Action>, from templates: URL) throws -> URL {
     let stage = try Files.getTempDir("leolem.create.staging")
 
-    if general.readme { try Template.readme.move(from: downloads, to: stage) }
-    if general.license { try Template.license.move(from: downloads, to: stage, rename: "LICENSE") }
-    if general.repo { try Template.gitignore.move(from: downloads, to: stage) }
+    try actions.compactMap(\.stagePath).forEach { name, rename, copy in
+      let origin = templates.appending(path: name)
+      var destination = templates.appending(path: rename ?? name)
 
-    try self.stage(from: downloads, to: stage)
+      if copy {
+        try Files.copy(from: origin, to: destination)
+      } else {
+        try Files.move(from: origin, to: destination)
+      }
+    }
 
     return stage
+  }
+
+  func replace(_ actions: Set<Action>, in stage: URL) throws {
+    try actions.compactMap(\.matchAndReplacement).forEach { match, replacement in
+      try Shell.replace(match, in: stage, with: replacement)
+    }
   }
 
   func unstage(from stage: URL, to project: URL) throws {

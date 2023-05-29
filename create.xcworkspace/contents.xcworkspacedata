@@ -10,6 +10,41 @@
    <FileRef
       location = "group:.gitignore">
    </FileRef>
+   <Group
+      location = "container:"
+      name = "arc">
+      <Group
+         location = "group:components"
+         name = "components">
+         <FileRef
+            location = "group:shared.swift">
+         </FileRef>
+         <FileRef
+            location = "group:app-xcodeproj.swift">
+         </FileRef>
+         <FileRef
+            location = "group:swiftlint.swift">
+         </FileRef>
+         <FileRef
+            location = "group:app-xcscheme.swift">
+         </FileRef>
+         <FileRef
+            location = "group:app-xcworkspace.swift">
+         </FileRef>
+         <FileRef
+            location = "group:xcodeproj.swift">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:app-download.swift">
+      </FileRef>
+      <FileRef
+         location = "group:app-replace.swift">
+      </FileRef>
+      <FileRef
+         location = "group:app-staging.swift">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:create">
    </FileRef>

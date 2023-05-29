@@ -224,10 +224,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E39CC212A20561900E99488 /* Build configuration list for PBXNativeTarget "<#TITLE#>" */;
 			buildPhases = (
+				<#SWIFTLINT_BUILDPHASE_ID#> /* swiftlint */
 				6E39CC0E2A20561800E99488 /* Sources */,
 				6E39CC0F2A20561800E99488 /* Frameworks */,
-				6E39CC102A20561800E99488 /* Resources */,
-				<#PROJECT_SCRIPT_BUILDPHASE_IDS#> /* swiftlint */
+				6E39CC102A20561800E99488 /* Resources */
 			);
 			buildRules = (
 			);
@@ -352,7 +352,7 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-<#PROJECT_SCRIPT_BUILDPHASES#> /* swiftlint */
+<#SWIFTLINT_BUILDPHASE#> /* swiftlint */
 
 /* Begin PBXSourcesBuildPhase section */
 		6E39CC0E2A20561800E99488 /* Sources */ = {
