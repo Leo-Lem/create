@@ -50,8 +50,14 @@ extension App {
     )
   }
 
-  func packageDep(refId: String, name: String) -> (id: String, ref: String) {
+  func packageDep(refId: String?, name: String) -> (id: String, ref: String) {
     let id = id()
-    return (id, "\(id) = {isa = XCSwiftPackageProductDependency; package = \(refId); productName = \(name);};")
+    
+    if let refId {
+      return (id, "\(id) = {isa = XCSwiftPackageProductDependency; package = \(refId); productName = \(name);};")
+    } else {
+      return (id, "\(id) = {isa = XCSwiftPackageProductDependency; productName = \(name);};")
+    }
+
   }
 }

@@ -18,6 +18,7 @@
 		6EE394F22A20648800CAAEAC /* Name-preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394F12A20648800CAAEAC /* Name-preview.swift */; };
 		6EE394F32A20654F00CAAEAC /* <#TITLE#>-tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE394A12A2058E900CAAEAC /* <#TITLE#>-tests.swift */; };
 		<#PROJECT_BUILD_REFS#>
+		<#FEATURE_PACKAGE_BUILD_REF#>
 		<#TCA_BUILD_REF#>
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				<#FEATURE_PACKAGE_BUILD_REF_ID#>
 				<#TCA_BUILD_REF_ID#> /* ComposableArchitecture */
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,6 +214,7 @@
 			);
 			name = "<#TITLE#>";
 			packageProductDependencies = (
+				<#FEATURE_PACKAGE_DEP_ID#>
 				<#TCA_DEP_ID#>
 			);
 			productName = "<#TITLE#>";
@@ -838,6 +841,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		<#FEATURE_PACKAGE_DEP#>
 		<#TCA_DEP#>
 /* End XCSwiftPackageProductDependency section */
 	};

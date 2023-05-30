@@ -2,5 +2,5 @@
 <Workspace
    version = "1.0">
    <#WORKSPACE_FILE_REFS#>
-   <#FEATURE_PACKAGE_REF#>
+   <#FEATURE_PACKAGE_FILE_REF#>
 </Workspace>
