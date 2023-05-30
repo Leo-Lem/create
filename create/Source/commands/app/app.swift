@@ -12,39 +12,28 @@ struct App: CreateCommand {
   @Option(name: .shortAndLong, help: "Your organisation name. (for Bundle identifier)")
   var organisation: String
 
-  @Option(name: [.long, .customShort("i")], help: "Your team ID. (default: select manually in Xcode)")
-  var teamId: String?
-
-  @Flag(name: [.long, .customShort("l")], inversion: .prefixedNo, help: "Use SwiftLint.")
+  @Flag(name: .long, inversion: .prefixedNo, help: "Use SwiftLint.")
   var swiftlint = true
 
-  @Option(name: .shortAndLong, help: "The name of your first feature.")
-  var featureName = "Feature"
+  @Option(name: .shortAndLong, help: "The name of your first feature.") var featureName = "Feature"
 
   func addActions(to actions: inout [Action]) {
-    actions += templateActions()
-    actions += xcodeproj(name: "<#TITLE#>/<#TITLE#>")
+    actions += Actions.template(template)
+    actions += Actions.xcodeproj(name: "<#TITLE#>/<#TITLE#>", organisation: organisation)
 
     if template == .tca {
-      actions += xcworkspace()
-      actions += tcaActions()
-      actions += featurePackage()
+      actions += Actions.xcworkspace(general: general)
+      actions += Actions.tca()
+      actions += Actions.feature(featureName)
     }
     
-    actions += xcscheme()
+    actions += Actions.xcscheme(for: template)
 
-    if general.repo { actions += gitignore() }
-    if swiftlint { actions += swiftlintActions() }
+    if general.repo { actions += Actions.gitignore(at: "<#TITLE#>/.gitignore") }
+    if swiftlint { actions += Actions.swiftlint() }
   }
 
   func runAfterSetup() throws {
-    if template == .tca { addFeaturePackage() }
-  }
-}
-
-extension App {
-  enum Kind: String, EnumerableFlag {
-    case simple
-    case tca
+    if template == .tca { addFeature() }
   }
 }

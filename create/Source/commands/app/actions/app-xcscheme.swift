@@ -1,25 +1,25 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
-extension App {
-  func xcscheme() -> [Action] {
-    switch template {
+extension App.Actions {
+  static func xcscheme(for kind: App.Kind) -> [Action] {
+    switch kind {
     case .simple:
       return []
     case .tca:
       let unit = "<#TITLE#>/test/Unit"
       let full = "<#TITLE#>/test/Full"
 
-      return Action.testplan(
+      return BaseActions.testplan(
         path: unit,
         targets: [("<#TITLE#>Tests", "<#SCHEME_CONTAINER#>", true)],
         coverageTargets: [("<#TITLE#>", "<#SCHEME_CONTAINER#>")]
       )
-      + Action.testplan(
+      + BaseActions.testplan(
         path: full,
         targets: [("<#TITLE#>Tests", "<#SCHEME_CONTAINER#>", true), ("<#TITLE#>UITests", "<#SCHEME_CONTAINER#>", false)],
         coverageTargets: [("<#TITLE#>", "<#SCHEME_CONTAINER#>")]
       )
-      + Action.xcscheme(
+      + BaseActions.xcscheme(
           at: "<#TITLE#>.xcworkspace/xcshareddata/xcschemes/<#TITLE#>.xcscheme",
           container: "<#TITLE#>/<#TITLE#>.xcodeproj",
           testPlans: [
@@ -28,22 +28,5 @@ extension App {
           ]
         )
     }
-  }
-
-  func buildActionEntry(name: String, path: String) -> String {
-    return "<BuildActionEntry "
-      + "buildForTesting = \"YES\" "
-      + "buildForRunning = \"YES\" "
-      + "buildForProfiling = \"YES\" "
-      + "buildForArchiving = \"YES\" "
-      + "buildForAnalyzing = \"YES\"> "
-      + "<BuildableReference "
-      + "BuildableIdentifier = \"primary\" "
-      + "BlueprintIdentifier = \"\(name)\" "
-      + "BuildableName = \"\(name)\" "
-      + "BlueprintName = \"\(name)\" "
-      + "ReferencedContainer = \"container:\(path)\">"
-      + "</BuildableReference>"
-      + "</BuildActionEntry>"
   }
 }

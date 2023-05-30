@@ -17,4 +17,21 @@ extension BaseActions {
           .joined(separator: "\n"))
     ]
   }
+
+  static func buildActionEntry(name: String, path: String) -> String {
+    return "<BuildActionEntry "
+      + "buildForTesting = \"YES\" "
+      + "buildForRunning = \"YES\" "
+      + "buildForProfiling = \"YES\" "
+      + "buildForArchiving = \"YES\" "
+      + "buildForAnalyzing = \"YES\"> "
+      + "<BuildableReference "
+      + "BuildableIdentifier = \"primary\" "
+      + "BlueprintIdentifier = \"\(name)\" "
+      + "BuildableName = \"\(name)\" "
+      + "BlueprintName = \"\(name)\" "
+      + "ReferencedContainer = \"container:\(path)\">"
+      + "</BuildableReference>"
+      + "</BuildActionEntry>"
+  }
 }

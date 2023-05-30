@@ -1,7 +1,7 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
-extension App {
-  func swiftlintActions() -> [Action] {
+extension App.Actions {
+  static func swiftlint() -> [Action] {
     let buildphaseId = id()
     let script = "if [[ \\\"$(uname -m)\\\" == arm64 ]]; then\\n"
       + "export PATH=\\\"$PATH:/opt/homebrew/bin\\\"\\n"

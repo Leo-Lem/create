@@ -1,7 +1,7 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
-extension App {
-  func templateActions() -> [Action] {
+extension App.Actions {
+  static func template(_ template: App.Kind) -> [Action] {
     let app = "apps/\(template.rawValue)"
 
     let root: String?
