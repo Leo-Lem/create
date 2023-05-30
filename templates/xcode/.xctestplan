@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "id": "5D4231B2-D99D-453F-B71E-302341297119",
+      "name": "Config",
+      "options": {}
+    }
+  ],
+  "defaultOptions": {
+    "codeCoverage": {
+      "targets": [
+        <#TESTPLAN_COVERAGE_TARGETS#>
+        <#FEATURE_PACKAGE_TESTPLAN_COVERAGE_TARGET#>
+      ]
+    }
+  },
+  "testTargets": [
+    <#TESTPLAN_TARGETS#>
+    <#FEATURE_PACKAGE_TESTPLAN_TARGET#>
+  ],
+  "version": 1
+}

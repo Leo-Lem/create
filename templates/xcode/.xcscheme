@@ -20,6 +20,7 @@
                ReferencedContainer = "container:<#SCHEME_CONTAINER#>">
             </BuildableReference>
          </BuildActionEntry>
+         <#FEATURE_PACKAGE_BUILD_ACTION_ENTRY#>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

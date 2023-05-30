@@ -20,7 +20,7 @@ struct AppView: View {
 extension AppView {
   struct Render: View {
     var body: some View {
-      featureView()
+      <#FEATURE_TITLE#>View()
     }
   }
 }

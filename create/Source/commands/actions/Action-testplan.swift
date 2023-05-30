@@ -1,12 +1,26 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
 extension Action {
-  // TODO: make test plans completely configurable
-  static func testplan(name: String, path: String) -> [Self] {
-    var actions = [Self]()
-    let file = "testplans/\(name).xctestplan"
-    actions.append(.download(file))
-    actions.append(.stage(file, rename: path))
-    return actions
+  static func testplan(
+    path: String,
+    targets: [(name: String, parallelizable: Bool)],
+    coverageTargets: [String]
+  ) -> [Action] {
+    let file = "xcode/.xctestplan"
+    return [
+      .download(file),
+      .stage(file, rename: "\(path).xctestplan"),
+      .replace("<#TESTPLAN_COVERAGE_TARGETS#>", replacement: targets.map(testplanTarget).joined(separator: ",\n")),
+      .replace("<#TESTPLAN_TARGETS#>", replacement: coverageTargets.map(testplanCoverageTarget).joined(separator: ",\n"))
+    ]
+  }
+
+  static func testplanTarget(name: String, parallelizable: Bool) -> String {
+    "{ \"parallelizable\": \(parallelizable), \"target\": { "
+      + "\"containerPath\": \"container:<#SCHEME_CONTAINER#>\", \"identifier\": \"\(name)\", \"name\": \"\(name)\" } }"
+  }
+
+  static func testplanCoverageTarget(name: String) -> String {
+    "{ \"containerPath\" : \"container:<#SCHEME_CONTAINER#>\", \"identifier\" : \"\(name)\", \"name\" : \"\(name)\" }"
   }
 }

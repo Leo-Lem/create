@@ -16,7 +16,7 @@ public struct <#TITLE#>View: View {
   public init() {}
 }
 
-extension Store: ObservableObject {}
+extension Store: ObservableObject {} // pass store as environment object
 
 // MARK: - (RENDER)
 

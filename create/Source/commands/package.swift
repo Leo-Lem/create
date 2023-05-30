@@ -21,12 +21,13 @@ struct Package: CreateCommand {
 
     actions.append(.replace("<#SWIFT_TOOLS_VERSION#>", replacement: swiftToolsVersion))
 
-    let testPlanPath = "test/ Unit.xctestplan"
-    actions += Action.testplan(name: "unit", path: testPlanPath)
+    let testplan = "test/ Unit.xctestplan"
+    actions += Action.testplan(
+      path: testplan, targets: [("<#TITLE#>Tests", true)], coverageTargets: ["<#TITLE#>"])
     actions += Action.xcscheme(
       at: ".swiftpm/xcode/xcshareddata/xcschemes/<#TITLE#>.xcscheme",
       container: "",
-      testPlans: [(path: testPlanPath, isDefault: true)]
+      testPlans: [(path: testplan, isDefault: true)]
     )
 
     if ci {

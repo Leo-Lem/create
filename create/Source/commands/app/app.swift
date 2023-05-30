@@ -20,7 +20,7 @@ struct App: CreateCommand {
 
   func addActions(to actions: inout [Action]) {
     actions += templateActions()
-    actions += xcodeproj(name: "app/app")
+    actions += xcodeproj(name: "<#TITLE#>/<#TITLE#>")
 
     if template == .tca {
       actions += xcworkspace()
@@ -35,7 +35,7 @@ struct App: CreateCommand {
   }
 
   func runAfterSetup() throws {
-    addFeaturePackage()
+    if template == .tca { addFeaturePackage() }
   }
 }
 

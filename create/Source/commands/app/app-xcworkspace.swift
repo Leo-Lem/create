@@ -8,7 +8,7 @@ extension App {
         general.repo ? ".gitignore" : nil,
         general.readme ? "README.md" : nil,
         general.license ? "LICENSE" : nil,
-        "app/app.xcodeproj"
+        "<#TITLE#>/<#TITLE#>.xcodeproj"
       ]
       .compactMap { $0 }
     )
