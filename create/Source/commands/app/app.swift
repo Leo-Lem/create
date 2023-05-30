@@ -25,14 +25,17 @@ struct App: CreateCommand {
     if template == .tca {
       actions += xcworkspace()
       actions += tcaActions()
+      actions += featurePackage()
     }
     
     actions += xcscheme()
 
     if general.repo { actions += gitignore() }
     if swiftlint { actions += swiftlintActions() }
+  }
 
-    // TODO: add feature package
+  func runAfterSetup() throws {
+    addFeaturePackage()
   }
 }
 

@@ -15,15 +15,11 @@ struct Package: CreateCommand {
   @Option(name: .long, help: "The Swift tools version.")
   var swiftToolsVersion = "5.8"
 
-  @Option(name: .long, parsing: .upToNextOption, help: "The supported platforms.")
-  var platforms = [".iOS(.v13)", ".macOS(.v10_15)"]
-
   func addActions(to actions: inout [Action]) {
     actions.append(.download("packages/\(template.rawValue)"))
     actions.append(.stageAll("packages/\(template.rawValue)"))
 
     actions.append(.replace("<#SWIFT_TOOLS_VERSION#>", replacement: swiftToolsVersion))
-    actions.append(.replace("<#PLATFORMS#>", replacement: platforms.joined(separator: ", ")))
 
     let testPlanPath = "test/ Unit.xctestplan"
     actions += Action.testplan(name: "unit", path: testPlanPath)
@@ -45,5 +41,14 @@ extension Package {
   enum Kind: String, EnumerableFlag {
     case plain
     case tcaFeature = "tca-feature"
+  }
+}
+
+extension Package {
+  init(general: CreateCommandOptions, template: Kind, ci: Bool, swiftlintVersion: String) {
+    self.general = general
+    self.template = template
+    self.ci = ci
+    self.swiftToolsVersion = swiftlintVersion
   }
 }

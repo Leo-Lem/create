@@ -6,10 +6,11 @@ extension Action {
     return [
       .download(file),
       .stage(file, rename: path),
-      .replace("<#WORKSPACE_FILE_REFS#>", replacement: fileRefs.map {
-        "<FileRef location = \"group:\($0)\"></FileRef>"
-      }
-      .joined(separator: "\n"))
+      .replace("<#WORKSPACE_FILE_REFS#>", replacement: fileRefs.map(xcworkspaceFileRef).joined(separator: "\n"))
     ]
+  }
+
+  static func xcworkspaceFileRef(path: String) -> String {
+    "<FileRef location = \"group:\(path)\"></FileRef>"
   }
 }

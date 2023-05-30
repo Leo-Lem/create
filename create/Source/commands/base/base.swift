@@ -7,4 +7,6 @@ protocol CreateCommand: ParsableCommand {
   var general: CreateCommandOptions { get }
 
   func addActions(to actions: inout [Action])
+
+  func runAfterSetup() throws
 }

@@ -2,9 +2,10 @@
 
 import Foundation
 
-// TODO: make actions an array to control order of execution
-
 extension CreateCommand {
+  @_disfavoredOverload
+  func runAfterSetup() throws {}
+
   func run() {
     do {
       print("Starting \(category) creation…")
@@ -48,6 +49,9 @@ extension CreateCommand {
 
       print("Moving to '\(general.project.path())'…")
       try unstage(from: stage, to: general.project)
+
+      print("Additional setup…")
+      try runAfterSetup()
 
       if general.repo {
         print("Initializing git repository…")

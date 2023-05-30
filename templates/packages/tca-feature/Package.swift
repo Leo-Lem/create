@@ -3,8 +3,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "<#TITLE#>",
-  platforms: [<#PLATFORMS#>]
+  name: "<#TITLE#>"
 )
 
 // MARK: - (DEPENDENCIES)

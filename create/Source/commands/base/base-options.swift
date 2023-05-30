@@ -12,7 +12,7 @@ struct CreateCommandOptions: ParsableArguments {
     help: "Where to create your project. (default: home)",
     completion: .directory,
     transform: { URL(filePath: $0) }
-  ) private var path = FileManager.default.homeDirectoryForCurrentUser
+  ) var path = FileManager.default.homeDirectoryForCurrentUser
 
   var project: URL { path.appending(component: title) }
 
@@ -22,4 +22,16 @@ struct CreateCommandOptions: ParsableArguments {
   @Flag(name: .long, inversion: .prefixedNo, help: "Adds an MIT license.") var license = true
   @Flag(name: .long, inversion: .prefixedNo, help: "Initializes a git repository.") var repo = true
   @Flag(name: .long, inversion: .prefixedNo, help: "Opens the project in Xcode.") var open = true
+}
+
+extension CreateCommandOptions {
+  init(title: String, path: URL, name: String?, readme: Bool, license: Bool, repo: Bool, open: Bool) {
+    self.title = title
+    self.path = path
+    self.name = name
+    self.readme = readme
+    self.license = license
+    self.repo = repo
+    self.open = open
+  }
 }
