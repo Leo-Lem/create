@@ -4,15 +4,17 @@ import ArgumentParser
 import class Foundation.FileManager
 import struct Foundation.URL
 
-struct CreateCommandOptions: ParsableArguments {
+struct BaseOptions: ParsableArguments {
   @Argument(help: "The title of your project.") var title: String
 
   @Option(
     name: .shortAndLong,
-    help: "Where to create your project. (default: home)",
+    help: "Where to create your project. (default: Desktop)",
     completion: .directory,
     transform: { URL(filePath: $0) }
-  ) var path = FileManager.default.homeDirectoryForCurrentUser
+  ) var path = try! FileManager.default.url(
+    for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: false
+  )
 
   var project: URL { path.appending(component: title) }
 
@@ -24,7 +26,7 @@ struct CreateCommandOptions: ParsableArguments {
   @Flag(name: .long, inversion: .prefixedNo, help: "Opens the project in Xcode.") var open = true
 }
 
-extension CreateCommandOptions {
+extension BaseOptions {
   init(title: String, path: URL, name: String?, readme: Bool, license: Bool, repo: Bool, open: Bool) {
     self.title = title
     self.path = path

@@ -5,7 +5,7 @@ import ArgumentParser
 struct App: CreateCommand {
   static let configuration = CommandConfiguration(abstract: "Creates a new app.")
 
-  @OptionGroup var general: CreateCommandOptions
+  @OptionGroup var general: BaseOptions
 
   @Flag(help: "The template to use.") var template: Kind = .simple
 

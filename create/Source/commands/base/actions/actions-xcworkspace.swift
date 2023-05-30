@@ -1,6 +1,6 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
-extension Action {
+extension BaseActions {
   static func xcworkspace(at path: String, fileRefs: [String]) -> [Action] {
     let file = "xcode/.xcworkspace"
     return [

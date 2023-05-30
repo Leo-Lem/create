@@ -3,11 +3,13 @@
 extension App {
   func swiftlintActions() -> [Action] {
     let buildphaseId = id()
-    let script = "export PATH=\\\"$PATH:/opt/homebrew/bin\\\"\\n"
+    let script = "if [[ \\\"$(uname -m)\\\" == arm64 ]]; then\\n"
+      + "export PATH=\\\"$PATH:/opt/homebrew/bin\\\"\\n"
+      + "fi\\n\\n"
       + "if which swiftlint > /dev/null; then\\n"
       + "  swiftlint\\n"
       + "else\\n"
-      + "  echo \\\"warning: Swiftlint not installed.\\\"\\n"
+      + "  echo \\\"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\\\"\\n"
       + "fi\\n"
     let replacement = "\(buildphaseId) = {isa = PBXShellScriptBuildPhase; buildActionMask = 2147483647; alwaysOutOfDate = 1;"
       + "files = (); inputFileListPaths = (); inputPaths = (); outputFileListPaths = (); outputPaths = (); "

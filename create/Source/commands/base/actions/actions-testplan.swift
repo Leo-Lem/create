@@ -1,6 +1,6 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
-extension Action {
+extension BaseActions {
   static func testplan(
     path: String,
     targets: [(name: String, container: String, parallelizable: Bool)],

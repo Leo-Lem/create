@@ -28,7 +28,7 @@ extension App {
   }
 
   func addFeaturePackage() {
-    let options = CreateCommandOptions(
+    let options = BaseOptions(
       title: featureName, path: general.path.appending(component: general.title),
       name: nil, readme: false, license: false, repo: false, open: false
     )
