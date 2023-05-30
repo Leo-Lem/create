@@ -44,7 +44,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "TEMPLATE_BRANCH"
-            value = "main"
+            value = "new-packages"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
@@ -86,63 +86,47 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "package"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--swift-tools-version 5.6"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--platforms .iOS(.v15) .macOS(.v12)"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-t MyPackage"
-            isEnabled = "YES">
+            argument = "MyPackage"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-p /users/leolem/dev/packages"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--no-ci"
-            isEnabled = "YES">
+            argument = "--tca-feature"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "app"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-t MyApp"
-            isEnabled = "NO">
+            argument = "MyApp"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--tca"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-p /users/leolem/dev/apps"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-o leolem"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-i 4UUEFBYP76"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--no-open"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--no-repo"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--no-swiftlint"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--no-tca"
-            isEnabled = "NO">
+            argument = "-f Counter"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-h"
@@ -152,7 +136,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "TEMPLATE_BRANCH"
-            value = "main"
+            value = "new-packages"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
