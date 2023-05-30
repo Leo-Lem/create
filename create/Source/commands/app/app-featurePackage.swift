@@ -3,11 +3,12 @@
 import ArgumentParser
 
 extension App {
-  var featureName: String { "feature" }
+  // TODO: add feature to xcscheme
+  var featureName: String { "Feature" } // TODO: make this an option
 
   func featurePackage() -> [Action] {
     let dep = packageDep(refId: nil, name: featureName)
-    let build = buildRef(dep.id)
+    let build = buildRef(dep.id, isProduct: true)
 
     return [
       .replace("<#FEATURE_PACKAGE_FILE_REF#>", replacement: Action.xcworkspaceFileRef(path: featureName)),

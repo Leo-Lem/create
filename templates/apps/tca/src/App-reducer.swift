@@ -1,14 +1,15 @@
 // Created by <#NAME#> on <#DATE#>.
 
 import ComposableArchitecture
+import struct <#FEATURE_TITLE#>.<#FEATURE_TITLE#>
 
 struct AppReducer: ReducerProtocol {
   var body: some ReducerProtocol<State, Action> {
-    Scope(state: \.hello, action: /Action.hello, child: Hello.init)
+    Scope(state: \.<#FEATURE_VARIABLE#>, action: /Action.<#FEATURE_VARIABLE#>, child: <#FEATURE_TITLE#>.init)
 
     Reduce { state, action in
       switch action {
-      case .toggleIsActive: state.isActive.toggle()
+      // TODO: add reducers
       default: break
       }
 
@@ -17,16 +18,20 @@ struct AppReducer: ReducerProtocol {
   }
 }
 
+// MARK: - (STATE)
+
 extension AppReducer {
   struct State: Equatable {
-    var hello: Hello.State
-    var isActive: Bool
+    var <#FEATURE_VARIABLE#> = <#FEATURE_TITLE#>.State()
+    // TODO: add state
   }
 }
 
+// MARK: - (ACTIONS)
+
 extension AppReducer {
   enum Action {
-    case hello(Hello.Action)
-    case toggleIsActive
+    case <#FEATURE_VARIABLE#>(<#FEATURE_TITLE#>.Action)
+    // TODO: add actions
   }
 }

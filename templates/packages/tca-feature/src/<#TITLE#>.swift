@@ -5,13 +5,15 @@ import ComposableArchitecture
 public struct <#TITLE#>: ReducerProtocol {
   public func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
     // TODO: add reducer for <#TITLE#>
-    
+
     switch action {
     default: break
     }
 
     return .none
   }
+
+  public init() {}
 }
 
 // MARK: - (STATE)
@@ -19,6 +21,8 @@ public struct <#TITLE#>: ReducerProtocol {
 public extension <#TITLE#> {
   struct State: Equatable {
     // TODO: add state for <#TITLE#>
+
+    public init() {}
   }
 }
 

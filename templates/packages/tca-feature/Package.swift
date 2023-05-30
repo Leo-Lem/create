@@ -3,7 +3,8 @@
 import PackageDescription
 
 let package = Package(
-  name: "<#TITLE#>"
+  name: "<#TITLE#>",
+  platforms: [.iOS(.v13)]
 )
 
 // MARK: - (DEPENDENCIES)

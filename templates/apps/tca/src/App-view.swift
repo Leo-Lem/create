@@ -2,13 +2,15 @@
 
 import ComposableArchitecture
 import SwiftUI
+import struct <#FEATURE_TITLE#>.<#FEATURE_TITLE#>View
 
 struct AppView: View {
   @EnvironmentObject private var store: StoreOf<AppReducer>
 
   var body: some View {
-    WithViewStore(store, observe: \.isActive, send: /AppReducer.Action.toggleIsActive) { isActive in
-      Render(isActive: isActive.state) { isActive.send(.toggleIsActive) }
+    WithViewStore(store) { vs in
+      Render()
+        .environmentObject(store.scope(state: \.<#FEATURE_VARIABLE#>, action: { .<#FEATURE_VARIABLE#>($0) }))
     }
   }
 }
@@ -17,15 +19,8 @@ struct AppView: View {
 
 extension AppView {
   struct Render: View {
-    let isActive: Bool
-    let toggleIsActive = () -> Void
-
     var body: some View {
-      if isActive {
-        HelloView()
-      } else {
-        Button("Tap to active", action: toggleIsActive)
-      }
+      featureView()
     }
   }
 }
@@ -35,11 +30,7 @@ extension AppView {
 #if DEBUG
   struct AppView_Previews: PreviewProvider {
     static var previews: some View {
-      AppView.Render(isActive: true) {}
-        .previewDisplayName("Active")
-
-      AppView.Render(isActive: false) {}
-        .previewDisplayName("Inactive")
+      AppView.Render()
     }
   }
 #endif

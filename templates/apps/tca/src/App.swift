@@ -12,7 +12,7 @@ struct App: SwiftUI.App {
     }
   }
 
-  private let store = Store(initialState: .init(), reducer: AppReducer())
+  private let store = Store(initialState: .init(), reducer: AppReducer.init)
 }
 
-extension Store: ObservableObject {} // enable passing store as environment object
+extension Store: ObservableObject {} // pass store as environment object

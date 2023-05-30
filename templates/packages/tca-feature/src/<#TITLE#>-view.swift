@@ -12,6 +12,8 @@ public struct <#TITLE#>View: View {
       Render()
     }
   }
+
+  public init() {}
 }
 
 extension Store: ObservableObject {}
