@@ -9,14 +9,14 @@ extension Action {
     let file = "xcode/.xctestplan"
     return [
       .download(file),
-      .stage(file, rename: "\(path).xctestplan"),
+      .stageCopy(file, rename: "\(path).xctestplan"),
       .replace("<#TESTPLAN_COVERAGE_TARGETS#>", replacement: targets.map(testplanTarget).joined(separator: ",\n")),
       .replace("<#TESTPLAN_TARGETS#>", replacement: coverageTargets.map(testplanCoverageTarget).joined(separator: ",\n"))
     ]
   }
 
   static func testplanTarget(name: String, parallelizable: Bool) -> String {
-    "{ \"parallelizable\": \(parallelizable), \"target\": { "
+    "{ \"parellelizable\": \(parallelizable), \"target\": { "
       + "\"containerPath\": \"container:<#SCHEME_CONTAINER#>\", \"identifier\": \"\(name)\", \"name\": \"\(name)\" } }"
   }
 

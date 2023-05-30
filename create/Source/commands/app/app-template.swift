@@ -8,7 +8,7 @@ extension App {
 
     switch template {
     case .simple: root = nil
-    case .tca: root = "app"
+    case .tca: root = "<#TITLE#>"
     }
 
     return [.download(app), .stageAll(app, rename: root)]
