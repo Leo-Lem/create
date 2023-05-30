@@ -7,9 +7,9 @@ import XCTest
 final class ShellTests: XCTestCase {
   func test_givenArgumentsAreValid_whenDownloadingTemplates_thenFilesAreDownloaded() throws {
     let temp = FileManager.default.temporaryDirectory.appending(component: "download-test")
+    try FileManager.default.createDirectory(at: temp, withIntermediateDirectories: true)
+    
     let url = try Shell.fetchTemplates(["packages/plain", "README.md", "licenses/MIT"], to: temp)
-
-    // TODO: figure out the issue here
 
     XCTAssertTrue(FileManager.default.fileExists(atPath: url.appending(path: "packages/plain").path()))
     XCTAssertTrue(FileManager.default.fileExists(atPath: url.appending(path: "README.md").path()))

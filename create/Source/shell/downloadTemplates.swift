@@ -7,7 +7,7 @@ extension Shell {
     let patterns = templates.map { "templates/\($0)" }
 
     try run(
-      "cd \(downloads.path())",
+      "cd \"\(downloads.path(percentEncoded: false))\"",
       "git init",
       "git remote add origin https://github.com/Leo-Lem/create.git",
       "git sparse-checkout set --no-cone \(patterns.joined(separator: " "))",
