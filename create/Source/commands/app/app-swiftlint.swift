@@ -19,7 +19,7 @@ extension App {
 
     return [
       .download(".swiftlint.yml"),
-      .stage(".swiftlint.yml", rename: "app/.swiftlint.yml"),
+      .stage(".swiftlint.yml", rename: "<#TITLE#>/.swiftlint.yml"),
       .replace("<#SWIFTLINT_BUILDPHASE#>", replacement: replacement),
       .replace("<#SWIFTLINT_BUILDPHASE_ID#>", replacement: "\(buildphaseId),"),
       .replace("<#SWIFTLINT_CONFIG_FILE_REF#>", replacement: file.ref),

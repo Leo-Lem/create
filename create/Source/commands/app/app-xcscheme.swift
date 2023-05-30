@@ -3,14 +3,21 @@
 extension App {
   func xcscheme() -> [Action] {
     switch template {
-    case .simple: return [] // TODO: implement simple
+    case .simple:
+      return []
     case .tca:
       let unit = "<#TITLE#>/test/Unit"
       let full = "<#TITLE#>/test/Full"
 
-      return Action.testplan(path: unit, targets: [("<#TITLE#>Tests", true)], coverageTargets: ["<#TITLE#>"])
+      return Action.testplan(
+        path: unit,
+        targets: [("<#TITLE#>Tests", "<#SCHEME_CONTAINER#>", true)],
+        coverageTargets: [("<#TITLE#>", "<#SCHEME_CONTAINER#>")]
+      )
       + Action.testplan(
-        path: full, targets: [("<#TITLE#>Tests", true), ("<#TITLE#>UITests", false)], coverageTargets: ["<#TITLE#>"]
+        path: full,
+        targets: [("<#TITLE#>Tests", "<#SCHEME_CONTAINER#>", true), ("<#TITLE#>UITests", "<#SCHEME_CONTAINER#>", false)],
+        coverageTargets: [("<#TITLE#>", "<#SCHEME_CONTAINER#>")]
       )
       + Action.xcscheme(
           at: "<#TITLE#>.xcworkspace/xcshareddata/xcschemes/<#TITLE#>.xcscheme",

@@ -5,7 +5,7 @@ extension App {
     let file = fileRef(".gitignore", isAbsolute: true)
 
     return [
-      .stageCopy(".gitignore", rename: template == .tca ? "app/.gitignore" : nil),
+      .stageCopy(".gitignore", rename: template == .tca ? "<#TITLE#>/.gitignore" : nil),
       .replace("<#GITIGNORE_FILE_REF#>", replacement: file.ref),
       .replace("<#GITIGNORE_FILE_REF_ID#>", replacement: "\(file.id),")
     ]

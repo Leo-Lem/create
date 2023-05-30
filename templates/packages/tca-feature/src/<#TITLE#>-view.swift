@@ -23,7 +23,7 @@ extension Store: ObservableObject {} // pass store as environment object
 extension <#TITLE#>View {
   struct Render: View {
     var body: some View {
-      Text("Hello, world!") // TODO: implement <#TITLE#> render view
+      Text("<#TITLE#>") // TODO: implement <#TITLE#> render view
     }
   }
 }

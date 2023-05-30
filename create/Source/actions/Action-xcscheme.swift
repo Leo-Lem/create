@@ -11,7 +11,7 @@ extension Action {
       .replace("<#SCHEME_TESTPLANS#>", replacement: testPlans
           .map { planPath, isDefault in
             "<TestPlanReference "
-              + "reference = \"container:\(planPath)\" \(isDefault ? "default = \"YES\"" : "")>"
+              + "reference = \"container:\(planPath).xctestplan\" \(isDefault ? "default = \"YES\"" : "")>"
               + "</TestPlanReference>"
           }
           .joined(separator: "\n"))

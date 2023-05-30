@@ -8,6 +8,7 @@ enum Action {
   case stageCopy(String, rename: String? = nil)
   case stageAll(_ dir: String, rename: String? = nil)
   case replace(String, replacement: String)
+  case replaceIn(String, replacement: String, path: String)
 }
 
 extension Action {
@@ -24,8 +25,12 @@ extension Action {
     }
   }
 
-  var matchAndReplacement: (String, String)? {
-    if case let .replace(match, replacement) = self { return (match, replacement) } else { return nil }
+  var matchAndReplacement: (String, String, path: String?)? {
+    switch self {
+    case let .replace(match, replacement): return (match, replacement, nil)
+    case let .replaceIn(match, replacement, path): return (match, replacement, path)
+    default: return nil
+    }
   }
 }
 

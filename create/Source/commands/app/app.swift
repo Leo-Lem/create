@@ -18,6 +18,9 @@ struct App: CreateCommand {
   @Flag(name: [.long, .customShort("l")], inversion: .prefixedNo, help: "Use SwiftLint.")
   var swiftlint = true
 
+  @Option(name: .shortAndLong, help: "The name of your first feature.")
+  var featureName = "Feature"
+
   func addActions(to actions: inout [Action]) {
     actions += templateActions()
     actions += xcodeproj(name: "<#TITLE#>/<#TITLE#>")

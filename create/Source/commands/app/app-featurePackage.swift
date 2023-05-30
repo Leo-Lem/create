@@ -3,8 +3,6 @@
 import ArgumentParser
 
 extension App {
-  var featureName: String { "Feature" } // TODO: make this an option
-
   func featurePackage() -> [Action] {
     let dep = packageDep(refId: nil, name: featureName)
     let build = buildRef(dep.id, isProduct: true)
@@ -20,14 +18,12 @@ extension App {
       .replace(
         "<#FEATURE_PACKAGE_BUILD_ACTION_ENTRY#>", replacement: buildActionEntry(name: featureName, path: featureName)
       ),
-      .replace(
-        "<#FEATURE_PACKAGE_TESTPLAN_TARGET#>",
-        replacement: "," + Action.testplanTarget(name: "\(featureName)Tests", parallelizable: true)
-      ),
-      .replace(
-        "<#FEATURE_PACKAGE_TESTPLAN_COVERAGE_TARGET#>",
-        replacement: "," + Action.testplanCoverageTarget(name: featureName)
-      )
+      .replace("<#FEATURE_PACKAGE_TESTPLAN_TARGET#>", replacement: "," + Action.testplanTarget(
+          name: "\(featureName)Tests", container: featureName, parallelizable: true
+        )),
+      .replace("<#FEATURE_PACKAGE_TESTPLAN_COVERAGE_TARGET#>", replacement: "," + Action.testplanCoverageTarget(
+        name: featureName, container: featureName
+      ))
     ]
   }
 
