@@ -18,18 +18,19 @@ struct App: CreateCommand {
   @Flag(name: [.long, .customShort("l")], inversion: .prefixedNo, help: "Use SwiftLint.")
   var swiftlint = true
 
-  func addActions(to actions: inout Set<Action>) {
-    actions.formUnion(templateActions())
-    actions.formUnion(xcodeproj(name: "app/app"))
-    actions.formUnion(xcscheme())
+  func addActions(to actions: inout [Action]) {
+    actions += templateActions()
+    actions += xcodeproj(name: "app/app")
 
     if template == .tca {
-      actions.formUnion(xcworkspace())
-      actions.formUnion(tcaActions())
+      actions += xcworkspace()
+      actions += tcaActions()
     }
+    
+    actions += xcscheme()
 
-    if general.repo { actions.formUnion(gitignore()) }
-    if swiftlint { actions.formUnion(swiftlintActions()) }
+    if general.repo { actions += gitignore() }
+    if swiftlint { actions += swiftlintActions() }
 
     // TODO: add feature package
   }

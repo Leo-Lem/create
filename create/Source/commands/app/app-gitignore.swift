@@ -1,7 +1,7 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
 extension App {
-  func gitignore() -> Set<Action> {
+  func gitignore() -> [Action] {
     let file = fileRef(".gitignore", isAbsolute: true)
 
     return [

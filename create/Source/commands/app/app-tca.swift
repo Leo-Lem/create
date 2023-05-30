@@ -1,7 +1,7 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
 extension App {
-  func tcaActions() -> Set<Action> {
+  func tcaActions() -> [Action] {
     let ref = packageRef(url: "https://github.com/pointfreeco/swift-composable-architecture", minVersion: "0.53.2")
     let dep = packageDep(refId: ref.id, name: "ComposableArchitecture")
     let build = buildRef(dep.id, isProduct: true)

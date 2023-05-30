@@ -3,7 +3,7 @@
 import struct Foundation.UUID
 
 extension App {
-  func xcodeproj(name: String) -> Set<Action> {
+  func xcodeproj(name: String) -> [Action] {
     let file = "xcode/.xcodeproj"
 
     let src = [fileRef("App-reducer.swift"), fileRef("App-view.swift"), fileRef("App.swift")]

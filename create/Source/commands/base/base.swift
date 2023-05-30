@@ -6,5 +6,5 @@ import struct Foundation.URL
 protocol CreateCommand: ParsableCommand {
   var general: CreateCommandOptions { get }
 
-  func addActions(to actions: inout Set<Action>)
+  func addActions(to actions: inout [Action])
 }

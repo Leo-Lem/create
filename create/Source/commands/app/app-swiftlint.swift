@@ -1,7 +1,7 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
 extension App {
-  func swiftlintActions() -> Set<Action> {
+  func swiftlintActions() -> [Action] {
     let buildphaseId = id()
     let script = "export PATH=\\\"$PATH:/opt/homebrew/bin\\\"\\n"
       + "if which swiftlint > /dev/null; then\\n"
@@ -17,13 +17,13 @@ extension App {
 
     let file = fileRef(".swiftlint.yml", isAbsolute: true)
 
-    return Set([
+    return [
       .download(".swiftlint.yml"),
       .stage(".swiftlint.yml", rename: "app/.swiftlint.yml"),
       .replace("<#SWIFTLINT_BUILDPHASE#>", replacement: replacement),
       .replace("<#SWIFTLINT_BUILDPHASE_ID#>", replacement: "\(buildphaseId),"),
       .replace("<#SWIFTLINT_CONFIG_FILE_REF#>", replacement: file.ref),
       .replace("<#SWIFTLINT_CONFIG_FILE_REF_ID#>", replacement: "\(file.id),")
-    ])
+    ]
   }
 }

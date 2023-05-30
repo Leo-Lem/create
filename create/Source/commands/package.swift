@@ -18,25 +18,25 @@ struct Package: CreateCommand {
   @Option(name: .long, parsing: .upToNextOption, help: "The supported platforms.")
   var platforms = [".iOS(.v13)", ".macOS(.v10_15)"]
 
-  func addActions(to actions: inout Set<Action>) {
-    actions.insert(.download("packages/\(template.rawValue)"))
-    actions.insert(.stageAll("packages/\(template.rawValue)"))
+  func addActions(to actions: inout [Action]) {
+    actions.append(.download("packages/\(template.rawValue)"))
+    actions.append(.stageAll("packages/\(template.rawValue)"))
 
-    actions.insert(.replace("<#SWIFT_TOOLS_VERSION#>", replacement: swiftToolsVersion))
-    actions.insert(.replace("<#PLATFORMS#>", replacement: platforms.joined(separator: ", ")))
+    actions.append(.replace("<#SWIFT_TOOLS_VERSION#>", replacement: swiftToolsVersion))
+    actions.append(.replace("<#PLATFORMS#>", replacement: platforms.joined(separator: ", ")))
 
     let testPlanPath = "test/ Unit.xctestplan"
-    actions.formUnion(Action.testplan(name: "unit", path: testPlanPath))
-    actions.formUnion(Action.xcscheme(
+    actions += Action.testplan(name: "unit", path: testPlanPath)
+    actions += Action.xcscheme(
       at: ".swiftpm/xcode/xcshareddata/xcschemes/<#TITLE#>.xcscheme",
       container: "",
       testPlans: [(path: testPlanPath, isDefault: true)]
-    ))
+    )
 
     if ci {
       let ci = "ci/github-actions.yml"
-      actions.insert(.download(ci))
-      actions.insert(.stage(ci, rename: ".github/workflows/ci.yml"))
+      actions.append(.download(ci))
+      actions.append(.stage(ci, rename: ".github/workflows/ci.yml"))
     }
   }
 }

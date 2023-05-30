@@ -8,31 +8,34 @@ extension CreateCommand {
   func run() {
     do {
       print("Starting \(category) creation…")
-      var actions = Set<Action>()
+      var actions = [Action]()
       addActions(to: &actions)
 
       if general.readme {
         let readme = "README.md"
-        actions.formUnion([.download(readme), .stage(readme), .replace("<#TITLE#>", replacement: general.title)])
+        actions += [.download(readme), .stage(readme)]
       }
 
       if general.license {
         let license = "licenses/MIT"
-        actions.formUnion([
+        actions += [
           .download(license),
           .stage(license, rename: "LICENSE"),
           .replace("<#YEAR#>", replacement: Date.now.formatted(Date.FormatStyle().year(.defaultDigits)))
-        ])
+        ]
       }
 
       if general.repo {
         let gitignore = ".gitignore"
-        actions.formUnion([.download(gitignore), .stageCopy(gitignore)])
+        actions += [.download(gitignore), .stageCopy(gitignore)]
       }
 
-      actions.insert(.replace("<#NAME#>", replacement: try Files.getName()))
-      actions.insert(.replace("<#DATE#>", replacement: Date.now
-          .formatted(Date.FormatStyle().year(.defaultDigits).month(.twoDigits).day(.twoDigits))))
+      actions += [
+        .replace("<#TITLE#>", replacement: general.title),
+        .replace("<#NAME#>", replacement: try Files.getName()),
+        .replace("<#DATE#>", replacement: Date.now
+            .formatted(Date.FormatStyle().year(.defaultDigits).month(.twoDigits).day(.twoDigits)))
+      ]
 
       print("Fetching templates…")
       let templates = try download(actions)
@@ -66,7 +69,7 @@ extension CreateCommand {
 private extension CreateCommand {
   var category: String { Mirror(reflecting: self).description.split(separator: " ").last?.lowercased() ?? "project" }
 
-  func download(_ actions: Set<Action>) throws -> URL {
+  func download(_ actions: [Action]) throws -> URL {
     let downloads = try Files.getTempDir("leolem.create.downloads")
 
     let templates = try Shell.fetchTemplates(actions.compactMap(\.downloadPath), to: downloads)
@@ -74,7 +77,7 @@ private extension CreateCommand {
     return templates
   }
 
-  func stage(_ actions: Set<Action>, from templates: URL) throws -> URL {
+  func stage(_ actions: [Action], from templates: URL) throws -> URL {
     let stage = try Files.getTempDir("leolem.create.staging")
 
     try actions.compactMap(\.stagePath).forEach { name, rename, copy, inDir in
@@ -92,12 +95,12 @@ private extension CreateCommand {
     return stage
   }
 
-  func replace(_ actions: Set<Action>, in stage: URL) throws {
+  func replace(_ actions: [Action], in stage: URL) throws {
     try actions.compactMap(\.matchAndReplacement).forEach { match, replacement in
       try Shell.replace(match, in: stage, with: replacement)
     }
 
-    try Shell.replace("<#[A-Z]*#>", in: stage, with: "")
+    try Shell.replace("<#[A-Z_]*#>", in: stage, with: "")
   }
 
   func unstage(from stage: URL, to project: URL) throws {

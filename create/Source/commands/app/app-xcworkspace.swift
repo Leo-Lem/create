@@ -1,7 +1,7 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
 extension App {
-  func xcworkspace() -> Set<Action> {
+  func xcworkspace() -> [Action] {
     Action.xcworkspace(
       at: "<#TITLE#>.xcworkspace",
       fileRefs: [

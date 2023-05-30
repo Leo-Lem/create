@@ -1,7 +1,7 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
 extension App {
-  func templateActions() -> Set<Action> {
+  func templateActions() -> [Action] {
     let app = "apps/\(template.rawValue)"
 
     let root: String?
