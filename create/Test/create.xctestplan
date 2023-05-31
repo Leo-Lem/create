@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "B2FDA6D7-CC41-4BCC-A577-DB02F4ED40F2",
+      "name" : "Config",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:",
+      "identifier" : "create",
+      "name" : "create"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "createTests",
+        "name" : "createTests"
+      }
+    }
+  ],
+  "version" : 1
+}

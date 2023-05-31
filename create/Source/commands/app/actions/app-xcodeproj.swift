@@ -2,18 +2,27 @@
 
 import struct Foundation.UUID
 
-extension App {
-  func xcodeproj(name: String) -> [Action] {
+extension App.Actions {
+  static func xcodeproj(for kind: App.Kind, organisation: String) -> [Action] {
     let file = "xcode/.xcodeproj"
 
-    let src = [fileRef("App-reducer.swift"), fileRef("App-view.swift"), fileRef("App.swift")]
-    let srcBuild = src.map { buildRef($0.id) }
-    
+    let name: String, files: [String]
+
+    switch kind {
+    case .simple:
+      name = "<#TITLE#>"
+      files = ["App.swift", "App-view.swift"]
+    case .tca:
+      name = "<#TITLE#>/<#TITLE#>"
+      files = ["App.swift", "App-view.swift", "App-reducer.swift"]
+    }
+
+    let src = files.map { fileRef($0) }, srcBuild = src.map { buildRef($0.id) }
+
     return [
       .download(file),
       .stage(file, rename: "\(name).xcodeproj"),
       .replace("<#ORGANISATION#>", replacement: organisation),
-      .replace("<#TEAM_ID#>", replacement: teamId ?? "YOUR_TEAM_ID"),
       .replace("<#PROJECT_FILE_REFS#>", replacement: src.map(\.ref).joined(separator: "\n")),
       .replace("<#PROJECT_SRC_FILE_REF_IDS#>", replacement: src.map(\.id).joined(separator: ",\n")),
       .replace("<#PROJECT_BUILD_REFS#>", replacement: srcBuild.map(\.ref).joined(separator: "\n")),
@@ -21,9 +30,9 @@ extension App {
     ]
   }
 
-  func id() -> String { UUID().uuidString.replacing("-", with: "") }
+  static func id() -> String { UUID().uuidString.replacing("-", with: "") }
 
-  func fileRef(_ path: String, isAbsolute: Bool = false) -> (id: String, ref: String) {
+  static func fileRef(_ path: String, isAbsolute: Bool = false) -> (id: String, ref: String) {
     let id = id()
     return (
       id,
@@ -31,7 +40,7 @@ extension App {
     )
   }
 
-  func buildRef(_ fileRefId: String, isProduct: Bool = false) -> (id: String, ref: String) {
+  static func buildRef(_ fileRefId: String, isProduct: Bool = false) -> (id: String, ref: String) {
     let id = id()
     return (
       id,
@@ -39,7 +48,7 @@ extension App {
     )
   }
 
-  func packageRef(url: String, minVersion: String) -> (id: String, ref: String) {
+  static func packageRef(url: String, minVersion: String) -> (id: String, ref: String) {
     let id = id()
     return (
       id,
@@ -50,14 +59,13 @@ extension App {
     )
   }
 
-  func packageDep(refId: String?, name: String) -> (id: String, ref: String) {
+  static func packageDep(refId: String?, name: String) -> (id: String, ref: String) {
     let id = id()
-    
+
     if let refId {
       return (id, "\(id) = {isa = XCSwiftPackageProductDependency; package = \(refId); productName = \(name);};")
     } else {
       return (id, "\(id) = {isa = XCSwiftPackageProductDependency; productName = \(name);};")
     }
-
   }
 }
