@@ -30,7 +30,7 @@ struct App: CreateCommand {
     actions += Actions.xcscheme(for: template)
 
     if general.repo { actions += Actions.gitignore(at: template == .tca ? "<#TITLE#>/.gitignore" : nil) }
-    if swiftlint { actions += Actions.swiftlint(at: template == .tca ? "<#TITLE#>/.gitignore" : nil) }
+    if swiftlint { actions += Actions.swiftlint(at: template == .tca ? "<#TITLE#>/.swiftlint.yml" : nil) }
   }
 
   func runAfterSetup() throws {
