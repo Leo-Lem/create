@@ -13,8 +13,8 @@ extension App.Actions {
 
     return [
       .download(app), .stageAll(app, rename: root),
-      .download(config), .stage(config, rename: (root.flatMap { $0 + "/" } ?? "") + config),
-      .download(res), .stage(res, rename: (root.flatMap { $0 + "/" } ?? "") + res)
+      .download(config), .stage(config, rename: (root.flatMap { $0 + "/" } ?? "") + "config"),
+      .download(res), .stage(res, rename: (root.flatMap { $0 + "/" } ?? "") + "res")
     ]
   }
 }
