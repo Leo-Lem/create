@@ -20,13 +20,14 @@ let script: Target = .executableTarget(
   dependencies: [
     .product(name: "ArgumentParser", package: "swift-argument-parser")
   ],
-  path: "Source"
+  path: "src"
 )
 
 let tests: Target = .testTarget(
   name: "\(script.name)Tests",
   dependencies: [.target(name: script.name)],
-  path: "Test"
+  path: "test",
+  exclude: ["create.xctestplan"]
 )
 
 package.targets = [script, tests]

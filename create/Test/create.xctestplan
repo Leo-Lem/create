@@ -9,7 +9,21 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:create",
+          "identifier" : "create",
+          "name" : "create"
+        }
+      ]
+    },
+    "environmentVariableEntries" : [
+      {
+        "key" : "TEMPLATE_BRANCH",
+        "value" : "main"
+      }
+    ],
     "targetForVariableExpansion" : {
       "containerPath" : "container:",
       "identifier" : "create",
@@ -20,7 +34,7 @@
     {
       "parallelizable" : true,
       "target" : {
-        "containerPath" : "container:",
+        "containerPath" : "container:create",
         "identifier" : "createTests",
         "name" : "createTests"
       }

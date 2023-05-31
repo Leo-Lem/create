@@ -6,7 +6,7 @@ extension App.Actions {
 
     if general.repo { refs.append(".gitignore") }
     if general.readme { refs.append("README.md") }
-    if general.license { refs.append("LICENSE") }
+    if general.license != .none { refs.append("LICENSE") }
 
     return BaseActions.xcworkspace(at: "<#TITLE#>.xcworkspace", fileRefs: refs)
   }

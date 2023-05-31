@@ -1,6 +1,7 @@
 // Created by Leopold Lemmermann on 31.05.23.
 
 import struct Foundation.Date
+import protocol ArgumentParser.ExpressibleByArgument
 
 extension BaseActions {
   static func license(_ license: License) -> [Action] {
@@ -13,6 +14,9 @@ extension BaseActions {
   }
 }
 
-enum License: String {
-  case mit = "MIT"
+enum License: String, ExpressibleByArgument {
+  case mit
+  case bsd = "0bsd"
+  case apache = "apache-2.0"
+  case none
 }

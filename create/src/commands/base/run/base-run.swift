@@ -13,7 +13,7 @@ extension CreateCommand {
       addActions(to: &actions)
 
       if general.readme { actions += BaseActions.readme() }
-      if general.license { actions += BaseActions.license(.mit) } // TODO: add more licenses
+      if general.license != .none { actions += BaseActions.license(general.license) }
       if general.repo { actions += BaseActions.gitignore() }
       
       actions += try BaseActions.replace(title: location.title, name: general.userName)

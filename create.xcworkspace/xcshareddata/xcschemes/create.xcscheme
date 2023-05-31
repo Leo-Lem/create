@@ -17,7 +17,7 @@
                BlueprintIdentifier = "create"
                BuildableName = "create"
                BlueprintName = "create"
-               ReferencedContainer = "container:">
+               ReferencedContainer = "container:create">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,7 +29,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:../../create.xctestplan"
+            reference = "container:create/Test/create.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
@@ -52,7 +52,7 @@
             BlueprintIdentifier = "create"
             BuildableName = "create"
             BlueprintName = "create"
-            ReferencedContainer = "container:">
+            ReferencedContainer = "container:create">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -100,7 +100,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "TEMPLATE_BRANCH"
-            value = "simple-app"
+            value = "main"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
@@ -111,16 +111,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "create"
             BuildableName = "create"
             BlueprintName = "create"
-            ReferencedContainer = "container:">
+            ReferencedContainer = "container:create">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
