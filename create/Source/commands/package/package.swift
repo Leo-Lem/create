@@ -7,7 +7,7 @@ struct Package: CreateCommand {
 
   @OptionGroup var location: LocationOptions
 
-  @Flag(help: "The template to use.") var template: Kind = .plain
+  @Flag(help: "The template to use.") var template: Kind
 
   @OptionGroup var general: BaseOptions
 

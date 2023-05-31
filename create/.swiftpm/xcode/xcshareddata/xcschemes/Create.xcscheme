@@ -66,6 +66,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--tca"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--simple"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -77,10 +81,29 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "MyPackage"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--tca-feature"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--plain"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-h"
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "TEMPLATE_BRANCH"
+            value = "simple-app"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

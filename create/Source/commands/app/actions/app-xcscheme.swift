@@ -20,7 +20,7 @@ extension App.Actions {
         coverageTargets: [("<#TITLE#>", "<#SCHEME_CONTAINER#>")]
       )
       + BaseActions.xcscheme(
-          at: "<#TITLE#>.xcworkspace/xcshareddata/xcschemes/<#TITLE#>.xcscheme",
+          at: "<#TITLE#>.xcworkspace/xcshareddata/xcschemes/<#TITLE#>",
           container: "<#TITLE#>/<#TITLE#>.xcodeproj",
           testPlans: [
             (path: unit, isDefault: true),

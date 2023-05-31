@@ -27,7 +27,7 @@ extension LocationOptions {
 }
 
 struct BaseOptions: ParsableArguments {
-  @Option(name: .shortAndLong, help: "Your name. (default: user name)") var userName: String? = nil
+  @Option(name: .shortAndLong, help: "Your name. (default: User name)") var userName: String?
 
   @Flag(name: .long, inversion: .prefixedNo, help: "Adds a README file.") var readme = true
   @Flag(name: .long, inversion: .prefixedNo, help: "Adds an MIT license.") var license = true

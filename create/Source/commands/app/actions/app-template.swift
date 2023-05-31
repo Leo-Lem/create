@@ -2,7 +2,7 @@
 
 extension App.Actions {
   static func template(_ template: App.Kind) -> [Action] {
-    let app = "apps/\(template.rawValue)"
+    let app = "apps/\(template.rawValue)", config = "apps/shared/config", res = "apps/shared/res"
 
     let root: String?
 
@@ -11,6 +11,10 @@ extension App.Actions {
     case .tca: root = "<#TITLE#>"
     }
 
-    return [.download(app), .stageAll(app, rename: root)]
+    return [
+      .download(app), .stageAll(app, rename: root),
+      .download(config), .stage(config, rename: (root.flatMap { $0 + "/" } ?? "") + config),
+      .download(res), .stage(res, rename: (root.flatMap { $0 + "/" } ?? "") + res)
+    ]
   }
 }
