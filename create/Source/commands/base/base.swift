@@ -3,6 +3,7 @@
 import ArgumentParser
 
 protocol CreateCommand: ParsableCommand {
+  var location: LocationOptions { get }
   var general: BaseOptions { get }
 
   func addActions(to actions: inout [Action])

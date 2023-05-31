@@ -2,11 +2,9 @@
 
 extension App {
   func addFeature() {
-    let options = BaseOptions(
-      title: featureName, path: general.path.appending(component: general.title),
-      name: nil, readme: false, license: false, repo: false, open: false
-    )
+    let location = LocationOptions(title: feature, path: location.project)
+    let options = BaseOptions(userName: nil, readme: false, license: false, repo: false, open: false)
 
-    Package(general: options, template: .tcaFeature, ci: false).run()
+    Package(location: location, template: .tcaFeature, general: options, ci: false).run()
   }
 }

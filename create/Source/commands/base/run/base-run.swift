@@ -16,7 +16,7 @@ extension CreateCommand {
       if general.license { actions += BaseActions.license(.mit) } // TODO: add more licenses
       if general.repo { actions += BaseActions.gitignore() }
       
-      actions += try BaseActions.replace(title: general.title, name: general.name)
+      actions += try BaseActions.replace(title: location.title, name: general.userName)
 
       print("Fetching templates…")
       let templates = try download(actions)
@@ -27,20 +27,20 @@ extension CreateCommand {
       print("Individualising templates…")
       try replace(actions, in: stage)
 
-      print("Moving to '\(general.project.path())'…")
-      try unstage(from: stage, to: general.project)
+      print("Moving to '\(location.project.path())'…")
+      try unstage(from: stage, to: location.project)
 
       print("Additional setup…")
       try runAfterSetup()
 
       if general.repo {
         print("Initializing git repository…")
-        try Shell.initRepo(at: general.project)
+        try Shell.initRepo(at: location.project)
       }
 
       if general.open {
         print("Opening \(category)…")
-        try Shell.openProject(at: general.project)
+        try Shell.openProject(at: location.project)
       }
 
       print("Done! Enjoy your new \(category) :)")

@@ -5,26 +5,26 @@ import ArgumentParser
 struct App: CreateCommand {
   static let configuration = CommandConfiguration(abstract: "Creates a new app.")
 
+  @Flag(help: "The template to use.") var template: Kind
+
+  @OptionGroup var location: LocationOptions
+
+  @Option(name: .shortAndLong, help: "Your organisation name. (for Bundle identifier)") var org: String
+
+  @Option(name: .shortAndLong, help: "The name of your first feature.") var feature = "Feature"
+
   @OptionGroup var general: BaseOptions
 
-  @Flag(help: "The template to use.") var template: Kind = .simple
-
-  @Option(name: .shortAndLong, help: "Your organisation name. (for Bundle identifier)")
-  var organisation: String
-
-  @Flag(name: .long, inversion: .prefixedNo, help: "Use SwiftLint.")
-  var swiftlint = true
-
-  @Option(name: .shortAndLong, help: "The name of your first feature.") var featureName = "Feature"
+  @Flag(name: .long, inversion: .prefixedNo, help: "Use SwiftLint.") var swiftlint = true
 
   func addActions(to actions: inout [Action]) {
     actions += Actions.template(template)
-    actions += Actions.xcodeproj(name: "<#TITLE#>/<#TITLE#>", organisation: organisation)
+    actions += Actions.xcodeproj(name: "<#TITLE#>/<#TITLE#>", organisation: org)
 
     if template == .tca {
       actions += Actions.xcworkspace(general: general)
       actions += Actions.tca()
-      actions += Actions.feature(featureName)
+      actions += Actions.feature(feature)
     }
     
     actions += Actions.xcscheme(for: template)

@@ -5,8 +5,12 @@ import ArgumentParser
 struct Package: CreateCommand {
   static let configuration = CommandConfiguration(abstract: "Creates a new package.")
 
-  @OptionGroup var general: BaseOptions
+  @OptionGroup var location: LocationOptions
+
   @Flag(help: "The template to use.") var template: Kind = .plain
+
+  @OptionGroup var general: BaseOptions
+
   @Flag(name: .long, inversion: .prefixedNo, help: "Adds Github Actions CI config.") var ci = true
 
   func addActions(to actions: inout [Action]) {
@@ -18,9 +22,10 @@ struct Package: CreateCommand {
 
 
 extension Package {
-  init(general: BaseOptions, template: Kind, ci: Bool) {
-    self.general = general
+  init(location: LocationOptions, template: Kind, general: BaseOptions, ci: Bool) {
+    self.location = location
     self.template = template
+    self.general = general
     self.ci = ci
   }
 }

@@ -4,7 +4,7 @@ import ArgumentParser
 import class Foundation.FileManager
 import struct Foundation.URL
 
-struct BaseOptions: ParsableArguments {
+struct LocationOptions: ParsableArguments {
   @Argument(help: "The title of your project.") var title: String
 
   @Option(
@@ -17,8 +17,17 @@ struct BaseOptions: ParsableArguments {
   )
 
   var project: URL { path.appending(component: title) }
+}
 
-  @Option(name: .shortAndLong, help: "Your name. (default: user name)") var name: String? = nil
+extension LocationOptions {
+  init(title: String, path: URL) {
+    self.title = title
+    self.path = path
+  }
+}
+
+struct BaseOptions: ParsableArguments {
+  @Option(name: .shortAndLong, help: "Your name. (default: user name)") var userName: String? = nil
 
   @Flag(name: .long, inversion: .prefixedNo, help: "Adds a README file.") var readme = true
   @Flag(name: .long, inversion: .prefixedNo, help: "Adds an MIT license.") var license = true
@@ -27,10 +36,8 @@ struct BaseOptions: ParsableArguments {
 }
 
 extension BaseOptions {
-  init(title: String, path: URL, name: String?, readme: Bool, license: Bool, repo: Bool, open: Bool) {
-    self.title = title
-    self.path = path
-    self.name = name
+  init(userName: String?, readme: Bool, license: Bool, repo: Bool, open: Bool) {
+    self.userName = userName
     self.readme = readme
     self.license = license
     self.repo = repo
