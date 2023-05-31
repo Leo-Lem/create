@@ -11,7 +11,7 @@ struct Package: CreateCommand {
 
   @OptionGroup var general: BaseOptions
 
-  @Flag(name: .long, inversion: .prefixedNo, help: "Adds Github Actions CI config.") var ci = true
+  @Flag(name: .long, help: "Adds Github Actions CI config.") var ci = false
 
   func addActions(to actions: inout [Action]) {
     actions += Actions.template(template)
