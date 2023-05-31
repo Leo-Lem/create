@@ -1,7 +1,7 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
 extension App.Actions {
-  static func gitignore(at path: String) -> [Action] {
+  static func gitignore(at path: String?) -> [Action] {
     let file = fileRef(".gitignore", isAbsolute: true)
 
     return [

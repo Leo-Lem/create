@@ -19,7 +19,7 @@ struct App: CreateCommand {
 
   func addActions(to actions: inout [Action]) {
     actions += Actions.template(template)
-    actions += Actions.xcodeproj(name: "<#TITLE#>/<#TITLE#>", organisation: org)
+    actions += Actions.xcodeproj(for: template, organisation: org)
 
     if template == .tca {
       actions += Actions.xcworkspace(general: general)
@@ -29,8 +29,8 @@ struct App: CreateCommand {
     
     actions += Actions.xcscheme(for: template)
 
-    if general.repo { actions += Actions.gitignore(at: "<#TITLE#>/.gitignore") }
-    if swiftlint { actions += Actions.swiftlint() }
+    if general.repo { actions += Actions.gitignore(at: template == .tca ? "<#TITLE#>/.gitignore" : nil) }
+    if swiftlint { actions += Actions.swiftlint(at: template == .tca ? "<#TITLE#>/.gitignore" : nil) }
   }
 
   func runAfterSetup() throws {

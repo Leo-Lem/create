@@ -1,10 +1,10 @@
 // Created by Leopold Lemmermann on 29.05.23.
 
 extension App.Actions {
-  static func swiftlint() -> [Action] {
+  static func swiftlint(at path: String?) -> [Action] {
     let buildphaseId = id()
     let script = "if [[ \\\"$(uname -m)\\\" == arm64 ]]; then\\n"
-      + "export PATH=\\\"$PATH:/opt/homebrew/bin\\\"\\n"
+      + "  export PATH=\\\"$PATH:/opt/homebrew/bin\\\"\\n"
       + "fi\\n\\n"
       + "if which swiftlint > /dev/null; then\\n"
       + "  swiftlint\\n"
@@ -21,7 +21,7 @@ extension App.Actions {
 
     return [
       .download(".swiftlint.yml"),
-      .stage(".swiftlint.yml", rename: "<#TITLE#>/.swiftlint.yml"),
+      .stage(".swiftlint.yml", rename: path),
       .replace("<#SWIFTLINT_BUILDPHASE#>", replacement: replacement),
       .replace("<#SWIFTLINT_BUILDPHASE_ID#>", replacement: "\(buildphaseId),"),
       .replace("<#SWIFTLINT_CONFIG_FILE_REF#>", replacement: file.ref),
